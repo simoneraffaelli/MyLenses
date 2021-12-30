@@ -7,5 +7,4 @@ import sr.app.mylenses.databinding.HomeFragmentBinding
 class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::inflate) {
 
     private val viewModel: HomeViewModel by viewModels()
-
 }

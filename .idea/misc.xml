@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/simon/Documents/AndroidStudioWorkspace/MyLenses/app/src/main/res/font/lato.xml" value="0.16927083333333334" />
+        <entry key="..\:/Users/simon/Documents/AndroidStudioWorkspace/MyLenses/app/src/main/res/font/lato_bold.xml" value="0.16927083333333334" />
+        <entry key="..\:/Users/simon/Documents/AndroidStudioWorkspace/MyLenses/app/src/main/res/font/lato_bold_italic.xml" value="0.16927083333333334" />
+        <entry key="..\:/Users/simon/Documents/AndroidStudioWorkspace/MyLenses/app/src/main/res/font/lato_italic.xml" value="0.16927083333333334" />
         <entry key="..\:/Users/simon/Documents/AndroidStudioWorkspace/MyLenses/app/src/main/res/layout/activity_main.xml" value="0.125" />
         <entry key="..\:/Users/simon/Documents/AndroidStudioWorkspace/MyLenses/app/src/main/res/layout/home_fragment.xml" value="0.1390625" />
+        <entry key="..\:/Users/simon/Documents/AndroidStudioWorkspace/MyLenses/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26614583333333336" />
       </map>
     </option>
   </component>

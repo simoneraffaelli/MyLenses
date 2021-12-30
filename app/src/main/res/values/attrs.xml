@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="langKey" format="string"/>
+    <attr name="textViewStyle" format="reference"/>
+
+    <declare-styleable name="TextView">
+        <attr name="langKey"/>
+        <attr name="android:text"/>
+    </declare-styleable>
+</resources>

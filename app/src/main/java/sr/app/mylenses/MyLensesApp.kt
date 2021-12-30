@@ -2,6 +2,7 @@ package sr.app.mylenses
 
 import android.app.Application
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import sr.app.mylenses.utils.lang.StringsManager
 import timber.log.Timber
 
 class MyLensesApp : Application() {
@@ -18,6 +19,8 @@ class MyLensesApp : Application() {
     override fun onCreate() {
         super.onCreate()
         _instance = this
+        //Init StringsManager
+        StringsManager::init
         //Init log
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
