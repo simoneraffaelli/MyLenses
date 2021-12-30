@@ -1,0 +1,17 @@
+android {
+    def props = new Properties()
+    def fileInputStream = new FileInputStream(file('./signing/signing.properties'))
+    props.load(fileInputStream)
+    fileInputStream.close()
+
+    defaultConfig {
+        signingConfigs {
+            release {
+                storeFile = file(props['keystorePath'])
+                storePassword = props['keystorePsw']
+                keyAlias = props['keyAlias']
+                keyPassword = props['keyPsw']
+            }
+        }
+    }
+}

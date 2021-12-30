@@ -5,5 +5,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "My Lenses"
+rootProject.name = "MyLenses"
 include ':app'
