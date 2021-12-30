@@ -6,7 +6,7 @@ import timber.log.Timber
 
 class Log {
     companion object {
-        private const val logPrefix = "SR-"
+        private const val logPrefix = "SRLog-"
 
         fun logDebug(message: String?, className: String) {
             Timber.tag("$logPrefix$className").d(message)
