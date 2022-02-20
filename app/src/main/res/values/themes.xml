@@ -1,13 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Theme.MyLenses" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorSurface">@color/primaryLightColor</item>
         <item name="colorOnSurface">@color/primaryTextColor</item>
         <item name="colorPrimary">@color/secondaryColor</item>
         <item name="colorPrimaryVariant">@color/secondaryLightColor</item>
         <item name="colorOnPrimary">@color/secondaryTextColor</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSurface</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/primaryColor</item>
         <item name="android:windowLightStatusBar">@bool/lightStatusBar</item>
-        <item name="textViewStyle">@style/DefaultTextView</item>
-        <item name="fontFamily">@font/lato</item>
+        <item name="materialTextViewStyle">@style/DefaultTextView</item>
+        <item name="materialButtonStyle">@style/DefaultButton</item>
+        <item name="lensAreaStyle">@style/Widget.MaterialComponents.CardView</item>
+        <item name="android:fontFamily">@font/lato</item>
+        <item name="android:colorBackground">@color/primaryColor</item>
+        <item name="android:textColorPrimary">@color/primaryTextColor</item>
+        <item name="android:textColorSecondary">@color/secondaryTextColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
     </style>
+
 </resources>

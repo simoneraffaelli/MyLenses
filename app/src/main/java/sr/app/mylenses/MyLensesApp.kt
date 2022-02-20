@@ -20,7 +20,7 @@ class MyLensesApp : Application() {
         super.onCreate()
         _instance = this
         //Init StringsManager
-        StringsManager::init
+        StringsManager.init()
         //Init log
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

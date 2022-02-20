@@ -7,7 +7,52 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="sr.app.mylenses.ui.HomeFragment"
+        android:name="sr.app.mylenses.ui.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_addNewLensesBottomSheetFragment"
+            app:destination="@id/addNewLensesBottomSheetFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_userInfoTopSheetDialogFragment"
+            app:destination="@id/userInfoTopSheetDialogFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_comingSoonFragment"
+            app:destination="@id/comingSoonFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_stocksBottomSheetFragment"
+            app:destination="@id/stocksBottomSheetFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/addNewLensesBottomSheetFragment"
+        android:name="sr.app.mylenses.ui.addnewlenses.AddNewLensesBottomSheetFragment"
+        android:label="AddNewLensesBottomSheetFragment" />
+    <fragment
+        android:id="@+id/lensFragment2"
+        android:name="sr.app.mylenses.ui.addnewlenses.LensFragment"
+        android:label="LensFragment" >
+        <argument
+            android:name="lensTypeArgKey"
+            app:argType="sr.app.mylenses.utils.data.utils.Type" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="sr.app.mylenses.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+    <dialog
+        android:id="@+id/userInfoTopSheetDialogFragment"
+        android:name="sr.app.mylenses.ui.userinfo.UserInfoTopSheetDialogFragment"
+        android:label="UserInfoTopSheetDialogFragment" >
+        <action
+            android:id="@+id/action_userInfoTopSheetDialogFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/comingSoonFragment"
+        android:name="sr.app.mylenses.ui.comingsoon.ComingSoonFragment"
+        android:label="ComingSoonFragment" />
+    <dialog
+        android:id="@+id/stocksBottomSheetFragment"
+        android:name="sr.app.mylenses.ui.stocks.StocksBottomSheetFragment"
+        android:label="StocksBottomSheetFragment" />
 </navigation>

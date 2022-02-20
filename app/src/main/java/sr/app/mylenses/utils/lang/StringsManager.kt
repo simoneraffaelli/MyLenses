@@ -1,18 +1,15 @@
 package sr.app.mylenses.utils.lang
 
-import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
 import sr.app.mylenses.MyLensesApp
-import sr.app.mylenses.utils.log.w
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.*
-import kotlin.collections.HashMap
 
 /**
  * Object that manages the language keys all over the application.
@@ -21,44 +18,15 @@ import kotlin.collections.HashMap
  */
 object StringsManager {
     private var languageMap: HashMap<String, String> = HashMap()
+    val publicMap: Map<String, String>
+        get() = languageMap
 
-    fun init(ctx: Context) {
-        changeLanguage(currentLocale, ctx)
-    }
-
-    /**
-     * Function that checks if the application support the language.
-     *
-     * @param locale
-     * @return
-     */
-    private fun localeSupported(locale: Locale): Boolean {
-        val fileName = langFileName(locale.language)
-        return MyLensesApp.instance.assets.list(assetPath)
-            ?.contains(fileName) == true
-    }
-
-
-    /**
-     * Function that changes the current language.
-     *
-     * @param languageLocale
-     * @param ctx
-     */
-    fun changeLanguage(languageLocale: Locale, ctx: Context) {
-        /* Check locale compatibility */
-        val locale = if (localeSupported(languageLocale)) {
-            languageLocale
-        } else {
-            w("Locale Not Supported!")
-            defaultLanguageLocale
-        }
-        /* Init New Lang */
+    init {
+        val locale = currentLocale
         languageMap = loadLanguageMap(locale)
-        setApplicationLocale(locale, ctx)
 
         /* fallback: Add spare lang key not translated yet */
-        if (languageLocale.language != defaultLanguageLocale.language) {
+        if (locale.language != defaultLanguageLocale.language) {
             val dfMap = loadLanguageMap(defaultLanguageLocale)
             for ((key, value) in dfMap) {
                 if (!languageMap.containsKey(key)) {
@@ -68,9 +36,7 @@ object StringsManager {
         }
     }
 
-    private fun setApplicationLocale(locale: Locale, ctx: Context) {
-        ctx.resources.configuration.setLocale(locale)
-    }
+    fun init() {}
 
     /**
      * Main function used to decode the translated sentence / word based on the current language.

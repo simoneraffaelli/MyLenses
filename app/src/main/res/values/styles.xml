@@ -1,8 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="DefaultTextView" parent="Widget.AppCompat.TextView">
+
+    <style name="DefaultTextView" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/primaryTextColor</item>
         <item name="android:fontFamily">@font/lato</item>
+    </style>
+
+    <style name="BoldTextView" parent="DefaultTextView">
+        <item name="android:fontFamily">@font/lato_bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="DefaultButton" parent="@style/Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:fontFamily">@font/lato</item>
+        <item name="android:padding">16dp</item>
+        <item name="backgroundTint">@color/secondaryColor</item>
+        <item name="rippleColor">@color/secondaryLightColor</item>
+        <item name="cornerRadius">24dp</item>
+    </style>
+
+    <style name="TitleBar" parent="BoldTextView">
+        <item name="android:textSize">35sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- AddNewLens Fragment -->
+    <style name="Label" parent="BoldTextView">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="SaveButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="fontFamily">@font/lato_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/secondaryColor</item>
+    </style>
+
+    <style name="TabIndicatorText" parent="BoldTextView">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:gravity">center</item>
+        <item name="android:lines">2</item>
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+    <!-- Home Tabs -->
+    <style name="TabCard" parent="Widget.MaterialComponents.CardView">
+        <item name="strokeColor">#3C8b91ff</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="cardCornerRadius">@dimen/cardCornerRadius</item>
+        <item name="android:maxHeight">150dp</item>
+        <item name="layout_constrainedHeight">true</item>
+        <item name="layout_constraintHeight_max">140dp</item>
+        <item name="layout_constraintDimensionRatio">2.2:1</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+    </style>
+
+    <style name="TabCardTitle" parent="BoldTextView">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TabCardSubtitle" parent="BoldTextView">
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

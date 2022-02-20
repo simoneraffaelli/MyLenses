@@ -2,6 +2,7 @@ package sr.app.mylenses.utils.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.lifecycle.LiveData
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import sr.app.mylenses.MyLensesApp
@@ -27,7 +28,10 @@ object SharedPreferencesManager {
     private val encryptedSharedPreferences by lazy { createEncryptedSharedPreferences() }
     private val sharedPreferences by lazy { createSharedPreferences() }
 
-    var languageSP: String
-        get() = sharedPreferences.getString(languageKey, "") ?: ""
-        set(value) = sharedPreferences.edit().putString(languageKey, value).apply()
+    var stocksSP: Int
+        get() = sharedPreferences.getInt(stocksKey, -1)
+        set(value) = sharedPreferences.edit().putInt(stocksKey, value).apply()
+
+    val stocksSPLiveData: LiveData<Int>
+        get() = sharedPreferences.liveData(stocksKey, -1)
 }

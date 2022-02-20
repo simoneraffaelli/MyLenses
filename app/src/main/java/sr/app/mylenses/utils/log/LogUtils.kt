@@ -2,11 +2,9 @@ package sr.app.mylenses.utils.log
 
 private val defaultTag: String
     get() {
-        var tag = ""
+        var tag = "NoDefaultTag"
         runCatching {
             tag = Throwable().stackTrace[2].className.split('.').last()
-        }.onFailure {
-            tag = "NoDefaultTag"
         }
 
         return tag

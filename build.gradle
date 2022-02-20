@@ -4,17 +4,20 @@ buildscript {
         google()
         mavenCentral()
     }
-    ext{
-        nav_version = '2.3.5'
-        lifecycle_version = '2.4.0'
-        room_version = '2.4.0'
+    ext {
+        nav_version = '2.4.1'
+        lifecycle_version = '2.4.1'
+        room_version = '2.4.1'
+        retrofit_version = '2.9.0'
+        ksp_version = "1.6.10-1.0.2"
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath 'com.android.tools.build:gradle:7.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
         classpath 'com.google.gms:google-services:4.3.10'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.1'
-        classpath 'com.google.firebase:perf-plugin:1.4.0'
+        classpath 'com.google.firebase:perf-plugin:1.4.1'
+        classpath "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:$ksp_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

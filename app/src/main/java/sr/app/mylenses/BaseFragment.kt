@@ -49,7 +49,11 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
             }
         }
 
-    fun googleLogin() {
+    fun googleSignIn() {
         getGoogleAccount.launch(GoogleSSOManager.client.signInIntent)
+    }
+
+    fun googleSignOut() {
+        GoogleSSOManager.signOut()
     }
 }

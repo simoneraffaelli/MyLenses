@@ -8,4 +8,6 @@
     <color name="secondaryDarkColor">#003aad</color>
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#ffffff</color>
+    <color name="waveViewPrimaryColor">#3C8b91ff</color>
+    <color name="waveViewSecondaryColor">#285364e0</color>
 </resources>

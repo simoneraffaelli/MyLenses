@@ -1,6 +1,8 @@
 package sr.app.mylenses.view
 
 import android.view.View
+import com.github.badoualy.datepicker.DatePickerTimeline
+import org.joda.time.DateTime
 
 fun View.enable(enabled: Boolean) {
     this.alpha = if (enabled) {
@@ -22,3 +24,12 @@ fun View.gone() {
 fun View.visible() {
     this.visibility = View.VISIBLE
 }
+
+val DatePickerTimeline.dateTime: DateTime
+    get() {
+        return DateTime().withDate(
+            this.selectedYear,
+            this.selectedMonth + 1,
+            this.selectedDay
+        )
+    }

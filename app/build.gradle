@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.devtools.ksp'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
     id 'com.google.firebase.firebase-perf'
@@ -34,7 +35,6 @@ android {
         }
     }
 
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -45,16 +45,22 @@ android {
     buildFeatures {
         viewBinding true
     }
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE', 'META-INF/LICENSE.txt', 'META-INF/license.txt', 'META-INF/NOTICE', 'META-INF/NOTICE.txt', 'META-INF/notice.txt', 'META-INF/ASL2.0']
+        }
+    }
+
 }
 
 dependencies {
     //AndroidX
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     //Misc
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'com.google.android.gms:play-services-auth:20.0.0'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -64,8 +70,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     //Room
-    implementation "androidx.room:room-runtime:$room_version"
+    implementation("androidx.room:room-runtime:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
     annotationProcessor "androidx.room:room-compiler:$room_version"
+    ksp("androidx.room:room-compiler:$room_version")
     //Gson
     implementation 'com.google.code.gson:gson:2.8.9'
     //Encrypted Shared Preferences
@@ -77,6 +85,29 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-perf-ktx'
+    //Drive API
+    implementation 'com.google.http-client:google-http-client-gson:1.40.1'
+    implementation 'com.google.api-client:google-api-client-android:1.32.2'
+    implementation 'com.google.apis:google-api-services-drive:v3-rev197-1.25.0'
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+    //JodaTime
+    implementation 'joda-time:joda-time:2.10.3'
+    //WaveView
+    implementation 'com.gelitenight.waveview:waveview:1.0.0'
+    //WilliamChart
+    implementation 'com.diogobernardino:williamchart:3.7.1'
+    implementation 'com.diogobernardino.williamchart:tooltip-slider:3.7.1'
+    implementation 'com.diogobernardino.williamchart:tooltip-points:3.7.1'
+    //DatePickerTimeline
+    implementation 'com.github.simoneraffaelli:datepicker-timeline:1.0.0'
+    //TopSheet
+    implementation 'com.github.Raffaa:AndroidTopSheet:0.52'
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
     //Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

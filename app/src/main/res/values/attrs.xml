@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="langKey" format="string"/>
-    <attr name="textViewStyle" format="reference"/>
+    <attr name="duration" format="integer"/>
+    <attr name="delay" format="integer"/>
+    <attr name="model" format="reference"/>
+    <attr name="langModel" format="reference"/>
+    <attr name="materialTextViewStyle" format="reference"/>
+    <attr name="materialButtonStyle" format="reference"/>
+    <attr name="lensAreaStyle" format="reference"/>
+    <attr name="carouselTextViewStyle" format="reference"/>
 
-    <declare-styleable name="TextView">
+    <declare-styleable name="MaterialTextView">
         <attr name="langKey"/>
         <attr name="android:text"/>
+    </declare-styleable>
+
+    <declare-styleable name="MaterialButton">
+        <attr name="langKey"/>
+        <attr name="android:text"/>
+    </declare-styleable>
+
+    <declare-styleable name="CarouselTextView">
+        <attr name="duration"/>
+        <attr name="delay"/>
+        <attr name="model"/>
+        <attr name="langModel"/>
     </declare-styleable>
 </resources>

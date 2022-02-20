@@ -1,20 +1,324 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.HomeFragment">
+    android:paddingHorizontal="24dp"
+    android:paddingVertical="8dp"
+    tools:context=".ui.home.HomeFragment">
 
-    <sr.app.mylenses.view.TextView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- Title Bar -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/topbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/lensesArea"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <sr.app.mylenses.view.MaterialTextView
+                    android:id="@+id/titleBar"
+                    style="@style/TitleBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:langKey="hi"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/userIcon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:cardCornerRadius="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/userIconImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_account" />
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Lenses Area -->
+            <sr.app.mylenses.view.lensesarea.LensesArea
+                android:id="@+id/lensesArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:layout_constraintTop_toBottomOf="@id/topbar"
+                app:layout_constraintBottom_toTopOf="@id/news"
+                app:strokeColor="#3C8b91ff"
+                app:strokeWidth="1dp" />
+            <!-- News -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/lensesArea"
+                app:layout_constraintBottom_toTopOf="@id/tabs">
+
+                <sr.app.mylenses.view.MaterialTextView
+                    style="@style/BoldTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:textSize="30sp"
+                    android:textStyle="bold|italic"
+                    app:langKey="didYouKnow" />
+
+                <sr.app.mylenses.view.CarouselTextView
+                    android:id="@+id/carouselTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/lato_italic"
+                    android:textSize="18sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <!-- Tabs -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/news"
+                app:layout_constraintBottom_toTopOf="@id/lol">
+                <!-- Shop -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/shop"
+                        style="@style/TabCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:transitionName="sharedElem_comingSoon"
+                        tools:ignore="MissingConstraints">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/shopLinearLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:orientation="vertical"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <sr.app.mylenses.view.MaterialTextView
+                                    android:id="@+id/shopTitle"
+                                    style="@style/TabCardTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:textColor="@color/secondaryColor"
+                                    app:langKey="store" />
+
+                                <sr.app.mylenses.view.MaterialTextView
+                                    android:id="@+id/shopSubtitle"
+                                    style="@style/TabCardSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/secondaryColor"
+                                    app:langKey="newDeals" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/shopIcon"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitEnd"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/shopLinearLayout"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/ic_shop" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Stocks -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:clickable="false">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/stocks"
+                        style="@style/TabCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:backgroundTint="@color/secondaryColor"
+                        tools:ignore="MissingConstraints">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="16dp">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/stocksLinearLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:orientation="vertical"
+                                app:layout_constraintEnd_toStartOf="@id/stockAdditonalInfo"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <sr.app.mylenses.view.MaterialTextView
+                                    android:id="@+id/stocksTitle"
+                                    style="@style/TabCardTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    app:langKey="stocks"
+                                    android:textColor="@color/secondaryTextColor" />
+
+                                <sr.app.mylenses.view.MaterialTextView
+                                    android:id="@+id/stocksSubtitle"
+                                    style="@style/TabCardSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/secondaryTextColor" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <sr.app.mylenses.view.MaterialTextView
+                                android:id="@+id/stockAdditonalInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center"
+                                android:textColor="@color/secondaryTextColor"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/stocksLinearLayout"
+                                app:layout_constraintTop_toTopOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Stats -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/history"
+                        style="@style/TabCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        tools:ignore="MissingConstraints">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/historyLinearLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:orientation="vertical"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <sr.app.mylenses.view.MaterialTextView
+                                    android:id="@+id/historyTitle"
+                                    style="@style/TabCardTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    app:langKey="stats"
+                                    android:textColor="@color/secondaryColor" />
+
+                                <sr.app.mylenses.view.MaterialTextView
+                                    android:id="@+id/historySubtitle"
+                                    style="@style/TabCardSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:langKey="checkStats"
+                                    android:textColor="@color/secondaryColor" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/historyIcon"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitEnd"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/historyLinearLayout"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@null" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <!-- :) -->
+            <FrameLayout
+                android:id="@+id/lol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintTop_toBottomOf="@id/tabs"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <sr.app.mylenses.view.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:alpha=".3"
+                    app:langKey="endJoke" />
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:langKey="test-string"
-        android:text="Home Frag" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scrollview">
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <sr.app.mylenses.view.MaterialButton
+            android:id="@+id/addNewLensesButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:langKey="addNewLenses" />
+    </FrameLayout>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>
