@@ -45,6 +45,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -56,6 +57,7 @@ android {
             excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE', 'META-INF/LICENSE.txt', 'META-INF/license.txt', 'META-INF/NOTICE', 'META-INF/NOTICE.txt', 'META-INF/notice.txt', 'META-INF/ASL2.0']
         }
     }
+    namespace 'sr.app.mylenses'
 }
 
 dependencies {
@@ -80,7 +82,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     ksp("androidx.room:room-compiler:$room_version")
     //Gson
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.10'
     //Encrypted Shared Preferences
     implementation "androidx.security:security-crypto:1.0.0"
     //Timber
@@ -93,27 +95,27 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf-ktx'
     //Drive API
     implementation 'com.google.http-client:google-http-client-gson:1.40.1'
-    implementation 'com.google.api-client:google-api-client-android:1.32.2'
+    implementation 'com.google.api-client:google-api-client-android:2.0.1'
     implementation 'com.google.apis:google-api-services-drive:v3-rev197-1.25.0'
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
     //JodaTime
-    implementation 'joda-time:joda-time:2.10.3'
+    implementation 'joda-time:joda-time:2.12.1'
     //WaveView
     implementation 'com.gelitenight.waveview:waveview:1.0.0'
     //WilliamChart
-    implementation 'com.diogobernardino:williamchart:3.7.1'
-    implementation 'com.diogobernardino.williamchart:tooltip-slider:3.7.1'
-    implementation 'com.diogobernardino.williamchart:tooltip-points:3.7.1'
+    implementation 'com.diogobernardino:williamchart:3.11.0'
+    implementation 'com.diogobernardino.williamchart:tooltip-slider:3.11.0'
+    implementation 'com.diogobernardino.williamchart:tooltip-points:3.11.0'
     //DatePickerTimeline
     implementation 'com.github.simoneraffaelli:datepicker-timeline:1.0.0'
     //TopSheet
     implementation 'com.github.Raffaa:AndroidTopSheet:0.52'
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.13.0'
-    ksp "com.github.bumptech.glide:ksp:4.13.0"
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    ksp 'com.github.bumptech.glide:ksp:4.14.2'
     //Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
