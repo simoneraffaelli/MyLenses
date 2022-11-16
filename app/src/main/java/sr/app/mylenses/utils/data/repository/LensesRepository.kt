@@ -5,7 +5,7 @@ import org.joda.time.DateTime
 import sr.app.mylenses.utils.data.database.dao.LensesDao
 import sr.app.mylenses.utils.data.database.models.LensModel
 import sr.app.mylenses.utils.data.model.LensPair
-import sr.app.mylenses.utils.data.utils.Type
+import sr.app.mylenses.utils.data.enums.Type
 import sr.app.mylenses.utils.log.w
 
 class LensesRepository(private val dao: LensesDao) {
@@ -16,6 +16,12 @@ class LensesRepository(private val dao: LensesDao) {
 
     val activeLensPairLiveData by lazy {
         dao.getActiveLensesLiveData().map {
+            lensModelToLensPair(it)
+        }
+    }
+
+    val lastLensPairLiveData by lazy {
+        dao.getLastLensesLiveData().map {
             lensModelToLensPair(it)
         }
     }

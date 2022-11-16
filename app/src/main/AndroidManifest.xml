@@ -3,24 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="sr.app.mylenses">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".MyLensesApp"
         android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyLenses"
-        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:theme="@style/Theme.MyLenses.Splash"
         tools:targetApi="s">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="sensorPortrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,13 +28,20 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name=".utils.notifications.NotificationsBroadcastReceiver"
+            android:name=".utils.notifications.local.NotificationsBroadcastReceiver"
             android:enabled="false"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <service
+            android:name="sr.app.mylenses.utils.notifications.push.MessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

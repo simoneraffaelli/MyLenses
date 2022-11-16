@@ -1,4 +1,4 @@
-package sr.app.mylenses.utils.notifications
+package sr.app.mylenses.utils.notifications.local
 
 import android.app.Notification
 import android.content.Context

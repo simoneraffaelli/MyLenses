@@ -1,4 +1,4 @@
-package sr.app.mylenses.utils.data.utils
+package sr.app.mylenses.utils.data.enums
 
 import androidx.annotation.Keep
 

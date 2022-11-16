@@ -28,6 +28,8 @@
         app:mti_tabBeforeSelectionColor="@color/primaryDarkColor"
         app:mti_tabSelectedColor="@color/secondaryLightColor"
         app:mti_yearDigitCount="0"
+        app:mti_ringLblDateSelectedColor="@color/secondaryLightColor"
+        app:mti_bgLblDateSelectedColor="@color/secondaryColor"
         app:mti_yearOnNewLine="false" />
 
     <sr.app.mylenses.view.MaterialTextView

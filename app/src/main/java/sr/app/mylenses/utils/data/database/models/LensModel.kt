@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 import org.joda.time.DateTime
 import sr.app.mylenses.utils.data.mapper.Mapper
 import sr.app.mylenses.utils.data.model.Lens
-import sr.app.mylenses.utils.data.utils.Duration
-import sr.app.mylenses.utils.data.utils.Type
+import sr.app.mylenses.utils.data.enums.Duration
+import sr.app.mylenses.utils.data.enums.Type
 
 @Entity(tableName = "lenses")
 class LensModel(

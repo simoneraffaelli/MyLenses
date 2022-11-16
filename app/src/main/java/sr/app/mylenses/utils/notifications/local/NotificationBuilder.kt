@@ -1,4 +1,4 @@
-package sr.app.mylenses.utils.notifications
+package sr.app.mylenses.utils.notifications.local
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -7,7 +7,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationCompat.EXTRA_NOTIFICATION_ID
 import sr.app.mylenses.MainActivity
 import sr.app.mylenses.R
 

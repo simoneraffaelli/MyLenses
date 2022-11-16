@@ -1,4 +1,4 @@
-package sr.app.mylenses.utils.notifications
+package sr.app.mylenses.utils.notifications.local
 
 const val channelId = "12345"
 const val actionSilence = "sr.app.mylenses.SILENCE_NOTIFICATION"

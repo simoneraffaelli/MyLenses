@@ -7,9 +7,9 @@ import androidx.navigation.fragment.navArgs
 import org.joda.time.DateTime
 import sr.app.mylenses.BaseFragment
 import sr.app.mylenses.databinding.LensFragmentBinding
+import sr.app.mylenses.utils.data.enums.Duration
+import sr.app.mylenses.utils.data.enums.Type
 import sr.app.mylenses.utils.data.model.Lens
-import sr.app.mylenses.utils.data.utils.Duration
-import sr.app.mylenses.utils.data.utils.Type
 import sr.app.mylenses.view.dateTime
 import java.util.*
 
@@ -17,6 +17,7 @@ import java.util.*
 class LensFragment : BaseFragment<LensFragmentBinding>(LensFragmentBinding::inflate) {
 
     private lateinit var lensType: Type
+    private var oldDuration: Duration? = null
 
     val lens: Lens
         get() {
@@ -29,7 +30,10 @@ class LensFragment : BaseFragment<LensFragmentBinding>(LensFragmentBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lensType = navArgs<LensFragmentArgs>().value.lensTypeArgKey
+        navArgs<LensFragmentArgs>().value.apply {
+            lensType = lensTypeArgKey
+            oldDuration = lensDurationArgKey
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,6 +48,11 @@ class LensFragment : BaseFragment<LensFragmentBinding>(LensFragmentBinding::infl
             Duration.labels
         ).apply {
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        oldDuration?.takeIf { it != Duration.undefined }?.let {
+            runCatching {
+                binding.spinner.setSelection(it.ordinal)
+            }
         }
     }
 

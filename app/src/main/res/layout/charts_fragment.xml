@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:overScrollMode="ifContentScrolls">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <sr.app.mylenses.view.MaterialTextView
+            style="@style/TitleBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:langKey="inLastMonth"/>
+
+        <com.db.williamchart.view.DonutChartView
+            android:id="@+id/donutChart"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginBottom="6dp"
+            app:chart_axis="none"
+            app:chart_labelsColor="#FF70977F"
+            app:chart_labelsSize="10sp"
+            app:chart_lineColor="@color/secondaryColor"
+            app:chart_lineThickness="3dp"
+            app:chart_smoothLine="true"/>
+
+        <sr.app.mylenses.view.MaterialTextView
+            style="@style/Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/lineChartDescription"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

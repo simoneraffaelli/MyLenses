@@ -4,9 +4,8 @@ import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
 import sr.app.mylenses.MyLensesApp
-import java.io.File
-import java.io.FileInputStream
-import java.io.InputStream
+import sr.app.mylenses.utils.data.langAssetPath
+import sr.app.mylenses.utils.data.load
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.*
@@ -58,23 +57,12 @@ object StringsManager {
     private fun loadLanguageMap(locale: Locale): HashMap<String, String> {
         val json = JsonParser.parseReader(
             InputStreamReader(
-                loadJson(locale.language),
+                load(MyLensesApp.instance, langAssetPath, langFileName(locale.language)),
                 StandardCharsets.UTF_8
             )
         )
         val typeToken =
             TypeToken.getParameterized(HashMap::class.java, String::class.java, String::class.java)
         return Gson().fromJson(json, typeToken.type)
-    }
-
-    private fun loadJson(langCode: String): InputStream {
-        val langDocPath = "${MyLensesApp.instance.filesDir}$documentsPath${langFileName(langCode)}"
-        val file = File(langDocPath)
-        return if (file.exists()) FileInputStream(file) else openLangFromAsset(langCode)
-    }
-
-    private fun openLangFromAsset(langCode: String): InputStream {
-        val langAssetPath = "$assetPath${langFileName(langCode)}"
-        return MyLensesApp.instance.assets.open(langAssetPath)
     }
 }

@@ -1,7 +1,9 @@
-package sr.app.mylenses.utils.data.utils
+package sr.app.mylenses.utils.data.enums
 
+import androidx.annotation.Keep
 import sr.app.mylenses.utils.lang.StringsManager
 
+@Keep
 enum class Duration(val days: Int) {
 
     biWeekly(14), monthly(31), biMonthly(60), quarterly(120), semiAnnual(180), annual(365), undefined(

@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import sr.app.mylenses.MyLensesApp
+import sr.app.mylenses.utils.data.enums.Duration
 
 object SharedPreferencesManager {
     private val ctx: Context
@@ -34,4 +35,16 @@ object SharedPreferencesManager {
 
     val stocksSPLiveData: LiveData<Int>
         get() = sharedPreferences.liveData(stocksKey, -1)
+
+    var lastLensesDurationSP: Pair<Duration, Duration>
+        get() {
+            return Pair(
+                Duration.fromInt(sharedPreferences.getInt(lastLeftLensDurationKey, -1)),
+                Duration.fromInt(sharedPreferences.getInt(lastRightLensDurationKey, -1))
+            )
+        }
+        set(value) {
+            sharedPreferences.edit().putInt(lastLeftLensDurationKey, value.first.days).apply()
+            sharedPreferences.edit().putInt(lastRightLensDurationKey, value.first.days).apply()
+        }
 }

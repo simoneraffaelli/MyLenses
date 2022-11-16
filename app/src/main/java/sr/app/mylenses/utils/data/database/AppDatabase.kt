@@ -7,21 +7,23 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import sr.app.mylenses.utils.data.database.converters.Converters
 import sr.app.mylenses.utils.data.database.dao.LensesDao
+import sr.app.mylenses.utils.data.database.dao.ResourcesDao
 import sr.app.mylenses.utils.data.database.models.LensModel
+import sr.app.mylenses.utils.data.database.models.ResourceModel
 import sr.app.mylenses.utils.data.databaseName
 
 @Database(
-    entities = [LensModel::class],
-    version = 2,
-    exportSchema = false
+    entities = [LensModel::class, ResourceModel::class],
+    version = 1,
+    exportSchema = true,
+    autoMigrations = []
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun lensesDao(): LensesDao
+    abstract fun resourcesDao() : ResourcesDao
 
     companion object {
-        // Singleton prevents multiple instances of database opening at the
-        // same time.
         @Volatile
         private var instance: AppDatabase? = null
 
@@ -33,7 +35,6 @@ abstract class AppDatabase : RoomDatabase() {
             context,
             AppDatabase::class.java, databaseName
         )
-            .fallbackToDestructiveMigration()
             .build()
     }
 }

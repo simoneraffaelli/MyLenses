@@ -17,6 +17,9 @@ abstract class LensesDao {
     @Query("SELECT * FROM lenses ORDER BY _id")
     abstract fun getAllLensesLiveData(): LiveData<List<LensModel>>
 
+    @Query("SELECT * FROM lenses ORDER BY _id DESC LIMIT 2")
+    abstract fun getLastLensesLiveData(): LiveData<List<LensModel>>
+
     @Query("UPDATE lenses SET is_active = 0 WHERE is_active = 1")
     abstract fun deactivateAllLenses()
 

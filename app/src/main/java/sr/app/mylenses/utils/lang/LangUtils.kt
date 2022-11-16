@@ -1,23 +1,23 @@
 package sr.app.mylenses.utils.lang
 
+import android.content.Context
 import sr.app.mylenses.MyLensesApp
+import sr.app.mylenses.utils.data.langAssetPath
 import java.util.*
 
-internal const val assetPath = "languages/"
-internal const val documentsPath = "resources/$assetPath"
+
 internal val defaultLanguageLocale = Locale.ENGLISH
 internal fun langFileName(localeCode: String) = "lang-$localeCode.json"
 
 internal val currentLocale: Locale
     get() {
-        return Locale.getDefault().takeIf { it.isSupported } ?: defaultLanguageLocale
+        return Locale.getDefault().takeIf { it.isSupported(MyLensesApp.instance) }
+            ?: defaultLanguageLocale
     }
 
-val Locale.isSupported: Boolean
-    get() {
-        return MyLensesApp.instance.assets.list(assetPath)
-            ?.contains(langFileName(this.language)) == true
-    }
+fun Locale.isSupported(context: Context): Boolean {
+    return context.assets.list(langAssetPath)?.contains(langFileName(this.language)) == true
+}
 
 val curiosities: Array<String>
     get() {

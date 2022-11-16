@@ -2,8 +2,9 @@ package sr.app.mylenses.utils.data.database.converters
 
 import androidx.room.TypeConverter
 import org.joda.time.DateTime
-import sr.app.mylenses.utils.data.utils.Duration
-import sr.app.mylenses.utils.data.utils.Type
+import sr.app.mylenses.utils.data.enums.Duration
+import sr.app.mylenses.utils.data.enums.ResourceType
+import sr.app.mylenses.utils.data.enums.Type
 
 class Converters {
     @TypeConverter
@@ -34,5 +35,15 @@ class Converters {
     @TypeConverter
     fun dateToLong(date: DateTime): Long {
         return date.millis
+    }
+
+    @TypeConverter
+    fun intToResourceType(value: Int): ResourceType {
+        return ResourceType.fromInt(value)
+    }
+
+    @TypeConverter
+    fun resourceTypeToInt(value: ResourceType): Int {
+        return value.ordinal
     }
 }

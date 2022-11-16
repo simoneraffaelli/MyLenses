@@ -4,19 +4,19 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import sr.app.mylenses.BuildConfig
 import timber.log.Timber
 
-class Log {
+internal class Log {
     companion object {
         private const val logPrefix = "SRLog-"
 
-        fun logDebug(message: String?, className: String) {
+        internal fun logDebug(message: String?, className: String) {
             Timber.tag("$logPrefix$className").d(message)
         }
 
-        fun logWarning(message: String?, className: String) {
+        internal fun logWarning(message: String?, className: String) {
             Timber.tag("$logPrefix$className").w(message)
         }
 
-        fun logThrowable(throwable: Throwable, className: String, message: String? = null) {
+        internal fun logThrowable(throwable: Throwable, className: String, message: String? = null) {
             if (!BuildConfig.DEBUG) {
                 FirebaseCrashlytics.getInstance().recordException(throwable)
             }

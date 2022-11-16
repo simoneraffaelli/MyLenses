@@ -1,4 +1,4 @@
-package sr.app.mylenses.utils.notifications
+package sr.app.mylenses.utils.notifications.local
 
 import android.app.AlarmManager
 import android.app.NotificationManager
@@ -9,7 +9,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import org.joda.time.DateTime
 import sr.app.mylenses.utils.data.model.LensPair
-import sr.app.mylenses.utils.data.utils.Type
+import sr.app.mylenses.utils.data.enums.Type
 import java.util.*
 
 class NotificationScheduler {

@@ -1,4 +1,4 @@
-package sr.app.mylenses.utils.notifications
+package sr.app.mylenses.utils.notifications.local
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -8,7 +8,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import sr.app.mylenses.utils.data.repository.RepositoryManager
-import sr.app.mylenses.utils.log.d
 
 class NotificationsBroadcastReceiver : BroadcastReceiver() {
 

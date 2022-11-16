@@ -4,8 +4,8 @@ import org.joda.time.DateTime
 import org.joda.time.Days
 import sr.app.mylenses.utils.data.database.models.LensModel
 import sr.app.mylenses.utils.data.mapper.Mapper
-import sr.app.mylenses.utils.data.utils.Duration
-import sr.app.mylenses.utils.data.utils.Type
+import sr.app.mylenses.utils.data.enums.Duration
+import sr.app.mylenses.utils.data.enums.Type
 import kotlin.math.max
 
 class Lens(

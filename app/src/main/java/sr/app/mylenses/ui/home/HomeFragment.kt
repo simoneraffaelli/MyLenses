@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
 import sr.app.mylenses.BaseFragment
@@ -37,8 +38,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
             val extras: FragmentNavigator.Extras =
                 FragmentNavigator.Extras.Builder().addSharedElement(it, "sharedElem_comingSoon")
                     .build()
-            Navigation.findNavController(it)
-                .navigate(HomeFragmentDirections.actionHomeFragmentToComingSoonFragment(), extras)
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToComingSoonFragment(), extras)
         }
 
         binding.userIcon.setOnClickListener {
@@ -47,7 +47,6 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
         }
 
         viewModel.lenses.observe(viewLifecycleOwner) { pair ->
-            d("Dentro observer livedata")
             pair?.let {
                 binding.lensesArea.addLenses(
                     LensesAreaItem(it.leftLens),
@@ -57,8 +56,11 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
         }
 
         binding.stocks.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(HomeFragmentDirections.actionHomeFragmentToStocksBottomSheetFragment())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStocksBottomSheetFragment())
+        }
+
+        binding.history.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChartsFragment())
         }
 
         SharedPreferencesManager.stocksSPLiveData.observe(viewLifecycleOwner) {

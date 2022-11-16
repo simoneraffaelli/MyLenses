@@ -1,6 +1,6 @@
-package sr.app.mylenses.utils.notifications
+package sr.app.mylenses.utils.notifications.local
 
-import sr.app.mylenses.utils.data.utils.Type
+import sr.app.mylenses.utils.data.enums.Type
 
 fun getNotificationId(lensType: Type): Int {
     return when (lensType) {
