@@ -12,12 +12,11 @@ class Lens(
     val type: Type,
     val duration: Duration,
     val initDate: DateTime,
-    val endDate: DateTime? = null,
-    var isActive: Boolean = true
+    val endDate: DateTime? = null
 ) : Mapper<LensModel> {
 
     val expirationDate: DateTime = initDate.plusDays(duration.days)
-    val timeLeft: Int = takeIf { endDate != null || !isActive }?.let { 0 } ?: max(
+    val timeLeft: Int = takeIf { endDate != null }?.let { 0 } ?: max(
         Days.daysBetween(
             DateTime.now(),
             expirationDate.plusDays(1)
@@ -30,8 +29,7 @@ class Lens(
             type = type,
             duration = duration,
             initDate = initDate,
-            endDate = endDate,
-            isActive = isActive
+            endDate = endDate
         )
     }
 }

@@ -9,11 +9,12 @@ import sr.app.mylenses.utils.data.database.converters.Converters
 import sr.app.mylenses.utils.data.database.dao.LensesDao
 import sr.app.mylenses.utils.data.database.dao.ResourcesDao
 import sr.app.mylenses.utils.data.database.models.LensModel
+import sr.app.mylenses.utils.data.database.models.LensPairModel
 import sr.app.mylenses.utils.data.database.models.ResourceModel
 import sr.app.mylenses.utils.data.databaseName
 
 @Database(
-    entities = [LensModel::class, ResourceModel::class],
+    entities = [LensModel::class, LensPairModel::class, ResourceModel::class],
     version = 1,
     exportSchema = true,
     autoMigrations = []
@@ -35,6 +36,7 @@ abstract class AppDatabase : RoomDatabase() {
             context,
             AppDatabase::class.java, databaseName
         )
+            .fallbackToDestructiveMigration() //TODO: REMOVE BEFORE DEPLOY
             .build()
     }
 }

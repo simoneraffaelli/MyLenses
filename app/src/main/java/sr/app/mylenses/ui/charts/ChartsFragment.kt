@@ -13,7 +13,6 @@ import sr.app.mylenses.R
 import sr.app.mylenses.databinding.ChartsFragmentBinding
 import sr.app.mylenses.ui.MainNavGraphViewModel
 import sr.app.mylenses.utils.data.enums.Duration
-import sr.app.mylenses.utils.data.model.Lens
 import sr.app.mylenses.utils.lang.StringsManager
 
 class ChartsFragment : BaseFragment<ChartsFragmentBinding>(ChartsFragmentBinding::inflate) {
@@ -36,29 +35,10 @@ class ChartsFragment : BaseFragment<ChartsFragmentBinding>(ChartsFragmentBinding
         binding.donutChart.animate(listOf())
 
         viewModel.allLenses.observe(viewLifecycleOwner) { model ->
-            val lensesUsed = model.count() * 2
-            val lensesUsedWithinDeadline = model.sumOf { lensPair ->
-                (1.takeIf {
-                    lensPair?.rightLens?.let {
-                        (it.endDate ?: DateTime.now()) <= it.expirationDate
-                    } ?: false
-                } ?: 0).plus(
-                    (1.takeIf {
-                        lensPair?.leftLens?.let {
-                            (it.endDate ?: DateTime.now()) <= it.expirationDate
-                        } ?: false
-                    } ?: 0)
-                )
-            }
-
-            val groupedLenses = arrayListOf<Lens>().apply {
-                model?.forEach {
-                    it?.let {
-                        this.add(it.leftLens)
-                        this.add(it.rightLens)
-                    }
-                }
-            }.groupBy { it.duration }
+            val lensesUsed = model.count()
+            val lensesUsedWithinDeadline =
+                model.count { (it.endDate ?: DateTime.now()) <= it.expirationDate }
+            val groupedLenses = model.groupBy { it.duration }
 
             val barSet = listOf(
                 StringsManager.get("biweekly") to (groupedLenses[Duration.biWeekly]?.count()

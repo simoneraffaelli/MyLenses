@@ -17,10 +17,11 @@ class AddNewLensesFragmentAdapter(fragment: Fragment) :
 
     val newLenses: LensPair?
         get() {
-            return takeIf { fragmentList.values.size == itemCount }?.let {
+            return takeIf { this.fragmentList.values.size == itemCount }?.let {
                 LensPair(
-                    fragmentList[0]!!.lens,
-                    fragmentList[1]!!.lens
+                    isActive = true,
+                    leftLens = this.fragmentList[0]!!.lens,
+                    rightLens = this.fragmentList[1]!!.lens
                 )
             }
         }

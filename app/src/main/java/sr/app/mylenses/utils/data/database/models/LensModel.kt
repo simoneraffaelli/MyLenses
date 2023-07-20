@@ -9,10 +9,10 @@ import sr.app.mylenses.utils.data.model.Lens
 import sr.app.mylenses.utils.data.enums.Duration
 import sr.app.mylenses.utils.data.enums.Type
 
-@Entity(tableName = "lenses")
+@Entity(tableName = "lens")
 class LensModel(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "_id")
+    @ColumnInfo(name = "id")
     var id: Long = 0,
     @ColumnInfo(name = "type")
     val type: Type,
@@ -22,11 +22,9 @@ class LensModel(
     val initDate: DateTime,
     @ColumnInfo(name = "end_date")
     val endDate: DateTime?,
-    @ColumnInfo(name = "is_active")
-    val isActive: Boolean
 ) : Mapper<Lens> {
     override fun map(): Lens {
-        return Lens(type, duration, initDate, endDate, isActive)
+        return Lens(type, duration, initDate, endDate)
     }
 
 }

@@ -2,15 +2,15 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1a08050873083f07cfdace1e8c580709",
+    "identityHash": "44fa7b5300cf2ff0b507c530004d1416",
     "entities": [
       {
-        "tableName": "lenses",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `init_date` INTEGER NOT NULL, `end_date` INTEGER, `is_active` INTEGER NOT NULL)",
+        "tableName": "lens",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `init_date` INTEGER NOT NULL, `end_date` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
-            "columnName": "_id",
+            "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -37,19 +37,51 @@
             "columnName": "end_date",
             "affinity": "INTEGER",
             "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "lens_pair",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `is_active` INTEGER NOT NULL, `left_lens_id` INTEGER NOT NULL, `right_lens_id` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "isActive",
             "columnName": "is_active",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "leftLensId",
+            "columnName": "left_lens_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rightLensId",
+            "columnName": "right_lens_id",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
+          "autoGenerate": true,
           "columnNames": [
-            "_id"
-          ],
-          "autoGenerate": true
+            "id"
+          ]
         },
         "indices": [],
         "foreignKeys": []
@@ -84,10 +116,10 @@
           }
         ],
         "primaryKey": {
+          "autoGenerate": false,
           "columnNames": [
             "file_name"
-          ],
-          "autoGenerate": false
+          ]
         },
         "indices": [],
         "foreignKeys": []
@@ -96,7 +128,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1a08050873083f07cfdace1e8c580709')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '44fa7b5300cf2ff0b507c530004d1416')"
     ]
   }
 }
