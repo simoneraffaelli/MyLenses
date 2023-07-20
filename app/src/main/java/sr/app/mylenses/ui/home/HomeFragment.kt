@@ -14,7 +14,6 @@ import sr.app.mylenses.databinding.HomeFragmentBinding
 import sr.app.mylenses.ui.MainNavGraphViewModel
 import sr.app.mylenses.utils.lang.StringsManager
 import sr.app.mylenses.utils.lang.curiosities
-import sr.app.mylenses.utils.log.d
 import sr.app.mylenses.utils.login.GoogleSSOManager
 import sr.app.mylenses.utils.preferences.SharedPreferencesManager
 import sr.app.mylenses.view.lensesarea.LensesAreaItem
@@ -46,7 +45,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
                 .navigate(HomeFragmentDirections.actionHomeFragmentToUserInfoTopSheetDialogFragment())
         }
 
-        viewModel.lenses.observe(viewLifecycleOwner) { pair ->
+        viewModel.activeLenses.observe(viewLifecycleOwner) { pair ->
             pair?.let {
                 binding.lensesArea.addLenses(
                     LensesAreaItem(it.leftLens),
@@ -60,7 +59,10 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
         }
 
         binding.history.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChartsFragment())
+            val extras: FragmentNavigator.Extras =
+                FragmentNavigator.Extras.Builder().addSharedElement(it, "sharedElem_history")
+                    .build()
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChartsFragment(), extras)
         }
 
         SharedPreferencesManager.stocksSPLiveData.observe(viewLifecycleOwner) {

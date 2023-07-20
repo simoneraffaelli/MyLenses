@@ -23,7 +23,7 @@ class CarouselTextView @JvmOverloads constructor(
     private val recycle: Stack<CharSequence> = Stack()
 
     private val defaultDuration = 500
-    private val defaultDelay = 300000L //5min
+    private val defaultDelay = 60000L //5min
 
     private var _duration: Int? = null
     val duration: Int

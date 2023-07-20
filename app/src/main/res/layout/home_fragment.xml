@@ -238,6 +238,7 @@
                         style="@style/TabCard"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:transitionName="sharedElem_history"
                         tools:ignore="MissingConstraints">
 
                         <androidx.constraintlayout.widget.ConstraintLayout

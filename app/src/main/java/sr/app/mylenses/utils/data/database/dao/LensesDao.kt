@@ -7,7 +7,7 @@ import sr.app.mylenses.utils.data.database.models.LensModel
 import sr.app.mylenses.utils.data.model.LensPair
 
 @Dao
-abstract class LensesDao {
+abstract class  LensesDao {
     @Query("SELECT * FROM lenses WHERE is_active = 1")
     abstract fun getActiveLensesLiveData(): LiveData<List<LensModel>>
 
@@ -15,7 +15,10 @@ abstract class LensesDao {
     abstract fun getActiveLenses(): List<LensModel>
 
     @Query("SELECT * FROM lenses ORDER BY _id")
-    abstract fun getAllLensesLiveData(): LiveData<List<LensModel>>
+    abstract fun getAllLenses(): LiveData<List<LensModel>>
+
+    @Query("SELECT * FROM lenses WHERE init_date > :dateMillis ORDER BY _id")
+    abstract fun getLastMonthLenses(dateMillis: Long): LiveData<List<LensModel>>
 
     @Query("SELECT * FROM lenses ORDER BY _id DESC LIMIT 2")
     abstract fun getLastLensesLiveData(): LiveData<List<LensModel>>

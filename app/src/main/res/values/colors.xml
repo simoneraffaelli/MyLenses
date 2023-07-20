@@ -10,4 +10,6 @@
     <color name="secondaryTextColor">#ffffff</color>
     <color name="waveViewPrimaryColor">#3C8b91ff</color>
     <color name="waveViewSecondaryColor">#285364e0</color>
+    <color name="lensesUsedWithinDeadline">#5364e0</color>
+    <color name="lensesUsedOutOfDeadline">#505364e0</color>
 </resources>
