@@ -12,4 +12,5 @@
     <color name="waveViewSecondaryColor">#285364e0</color>
     <color name="lensesUsedWithinDeadline">#5364e0</color>
     <color name="lensesUsedOutOfDeadline">#505364e0</color>
+    <color name="danger">#f44336</color>
 </resources>
