@@ -1,17 +1,22 @@
 package sr.app.mylenses.ui.home
 
+import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import sr.app.mylenses.BaseFragment
 import sr.app.mylenses.R
 import sr.app.mylenses.databinding.HomeFragmentBinding
 import sr.app.mylenses.ui.MainNavGraphViewModel
+import sr.app.mylenses.utils.data.repository.RepositoryManager
 import sr.app.mylenses.utils.lang.StringsManager
 import sr.app.mylenses.utils.lang.curiosities
 import sr.app.mylenses.utils.login.GoogleSSOManager
@@ -25,6 +30,8 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.container.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
 
         binding.carouselTextView.textList = curiosities
 
@@ -51,6 +58,12 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
                     LensesAreaItem(it.leftLens),
                     LensesAreaItem(it.rightLens)
                 )
+
+                binding.lensesArea.deleteButtonClickListener = View.OnClickListener {
+                    lifecycleScope.launch(Dispatchers.Default) {
+                        RepositoryManager.lensesRepository.deactivateActiveLenses()
+                    }
+                }
             } ?: binding.lensesArea.reset()
         }
 

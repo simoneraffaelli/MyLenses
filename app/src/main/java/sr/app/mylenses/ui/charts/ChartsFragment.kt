@@ -53,8 +53,10 @@ class ChartsFragment : BaseFragment<ChartsFragmentBinding>(ChartsFragmentBinding
 
             val groupedLenses = arrayListOf<Lens>().apply {
                 model?.forEach {
-                    this.add(it!!.leftLens)
-                    this.add(it.rightLens)
+                    it?.let {
+                        this.add(it.leftLens)
+                        this.add(it.rightLens)
+                    }
                 }
             }.groupBy { it.duration }
 
