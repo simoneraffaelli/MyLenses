@@ -14,6 +14,8 @@ import sr.app.mylenses.databinding.ChartsFragmentBinding
 import sr.app.mylenses.ui.MainNavGraphViewModel
 import sr.app.mylenses.utils.data.enums.Duration
 import sr.app.mylenses.utils.lang.StringsManager
+import sr.app.mylenses.view.gone
+import sr.app.mylenses.view.visible
 
 class ChartsFragment : BaseFragment<ChartsFragmentBinding>(ChartsFragmentBinding::inflate) {
 
@@ -35,42 +37,51 @@ class ChartsFragment : BaseFragment<ChartsFragmentBinding>(ChartsFragmentBinding
         binding.donutChart.animate(listOf())
 
         viewModel.allLenses.observe(viewLifecycleOwner) { model ->
-            val lensesUsed = model.count()
-            val lensesUsedWithinDeadline =
-                model.count { (it.endDate ?: DateTime.now()) <= it.expirationDate }
-            val groupedLenses = model.groupBy { it.duration }
+            if (model.isEmpty()) {
+                binding.noDataContainer.visible()
+                binding.scrollview.gone()
+            } else {
+                binding.noDataContainer.gone()
+                binding.scrollview.visible()
 
-            val barSet = listOf(
-                StringsManager.get("biweekly") to (groupedLenses[Duration.biWeekly]?.count()
-                    ?.toFloat() ?: 0f),
-                StringsManager.get("monthly") to (groupedLenses[Duration.monthly]?.count()
-                    ?.toFloat() ?: 0f),
-                StringsManager.get("bimonthly") to (groupedLenses[Duration.biMonthly]?.count()
-                    ?.toFloat()
-                    ?: 0f),
-                StringsManager.get("quarterly") to (groupedLenses[Duration.quarterly]?.count()
-                    ?.toFloat()
-                    ?: 0f),
-                StringsManager.get("semiannual") to (groupedLenses[Duration.semiAnnual]?.count()
-                    ?.toFloat()
-                    ?: 0f),
-                StringsManager.get("annual") to (groupedLenses[Duration.annual]?.count()?.toFloat()
-                    ?: 0f)
-            )
+                val lensesUsed = model.count()
+                val lensesUsedWithinDeadline =
+                    model.count { (it.endDate ?: DateTime.now()) <= it.expirationDate }
+                val groupedLenses = model.groupBy { it.duration }
 
-            val donutSet = listOf(
-                lensesUsedWithinDeadline.toFloat(),
-                (lensesUsed - lensesUsedWithinDeadline).toFloat()
-            )
-            /* Subtitle */
-            animateSubtitleTextView(lensesUsed)
-            /* DonutChartDesc */
-            animateDonutChartDesc(
-                lensesUsedWithinDeadline,
-                lensesUsed - lensesUsedWithinDeadline
-            )
-            /* Build Charts */
-            buildLastMonthStats(barSet, donutSet)
+                val barSet = listOf(
+                    StringsManager.get("biweekly") to (groupedLenses[Duration.biWeekly]?.count()
+                        ?.toFloat() ?: 0f),
+                    StringsManager.get("monthly") to (groupedLenses[Duration.monthly]?.count()
+                        ?.toFloat() ?: 0f),
+                    StringsManager.get("bimonthly") to (groupedLenses[Duration.biMonthly]?.count()
+                        ?.toFloat()
+                        ?: 0f),
+                    StringsManager.get("quarterly") to (groupedLenses[Duration.quarterly]?.count()
+                        ?.toFloat()
+                        ?: 0f),
+                    StringsManager.get("semiannual") to (groupedLenses[Duration.semiAnnual]?.count()
+                        ?.toFloat()
+                        ?: 0f),
+                    StringsManager.get("annual") to (groupedLenses[Duration.annual]?.count()
+                        ?.toFloat()
+                        ?: 0f)
+                )
+
+                val donutSet = listOf(
+                    lensesUsedWithinDeadline.toFloat(),
+                    (lensesUsed - lensesUsedWithinDeadline).toFloat()
+                )
+                /* Subtitle */
+                animateSubtitleTextView(lensesUsed)
+                /* DonutChartDesc */
+                animateDonutChartDesc(
+                    lensesUsedWithinDeadline,
+                    lensesUsed - lensesUsedWithinDeadline
+                )
+                /* Build Charts */
+                buildLastMonthStats(barSet, donutSet)
+            }
         }
     }
 
