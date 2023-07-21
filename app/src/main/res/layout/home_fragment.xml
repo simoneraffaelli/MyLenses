@@ -98,8 +98,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/lato_italic"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/lato"
+                    android:textSize="16sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <!-- Tabs -->
             <androidx.appcompat.widget.LinearLayoutCompat
