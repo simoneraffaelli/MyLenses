@@ -27,6 +27,25 @@ class LensesRepository(private val dao: LensesDao) {
         dao.addNewLenses(pair)
     }
 
+    fun editActivePair(pair: LensPair) {
+        val dbPair = dao.getActiveLensPair()
+        dbPair?.let {
+            val leftLens = it.leftLens.apply {
+                this.duration = pair.leftLens.duration
+                this.initDate = pair.leftLens.initDate
+            }
+
+            val rightLens = it.rightLens.apply {
+                this.duration = pair.rightLens.duration
+                this.initDate = pair.rightLens.initDate
+            }
+
+            dao.update(leftLens)
+            dao.update(rightLens)
+        }
+
+    }
+
     fun deactivateActiveLenses() {
         dao.setEndDateForActiveLenses(DateTime.now())
         dao.deactivateLensPair()

@@ -11,13 +11,14 @@ import sr.app.mylenses.utils.data.enums.Duration
 import sr.app.mylenses.utils.data.enums.Type
 import sr.app.mylenses.utils.data.model.Lens
 import sr.app.mylenses.view.dateTime
-import java.util.*
+import java.util.Calendar
 
 
 class LensFragment : BaseFragment<LensFragmentBinding>(LensFragmentBinding::inflate) {
 
     private lateinit var lensType: Type
     private var oldDuration: Duration? = null
+    private var oldStartDate: Long = -1
 
     val lens: Lens
         get() {
@@ -33,6 +34,7 @@ class LensFragment : BaseFragment<LensFragmentBinding>(LensFragmentBinding::infl
         navArgs<LensFragmentArgs>().value.apply {
             lensType = lensTypeArgKey
             oldDuration = lensDurationArgKey
+            oldStartDate = lensStartDateArgKey
         }
     }
 
@@ -57,11 +59,12 @@ class LensFragment : BaseFragment<LensFragmentBinding>(LensFragmentBinding::infl
     }
 
     private fun initDatePicker() {
-        val now = DateTime.now()
+        val date =
+            oldStartDate.takeIf { it > 0 }?.let { DateTime().withMillis(it) } ?: DateTime.now()
         binding.datepicker.apply {
-            setFirstVisibleDate(now.year - 1, Calendar.JANUARY, 1)
-            setLastVisibleDate(now.year + 2, Calendar.DECEMBER, 31)
-            setSelectedDate(now.year, now.monthOfYear - 1, now.dayOfMonth)
+            setFirstVisibleDate(date.year - 1, Calendar.JANUARY, 1)
+            setLastVisibleDate(date.year + 2, Calendar.DECEMBER, 31)
+            setSelectedDate(date.year, date.monthOfYear - 1, date.dayOfMonth)
         }
     }
 }

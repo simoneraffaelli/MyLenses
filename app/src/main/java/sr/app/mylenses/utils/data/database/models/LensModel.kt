@@ -17,9 +17,9 @@ class LensModel(
     @ColumnInfo(name = "type")
     val type: Type,
     @ColumnInfo(name = "duration")
-    val duration: Duration,
+    var duration: Duration,
     @ColumnInfo(name = "init_date")
-    val initDate: DateTime,
+    var initDate: DateTime,
     @ColumnInfo(name = "end_date")
     val endDate: DateTime?,
 ) : Mapper<Lens> {

@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_chartsFragment"
             app:destination="@id/chartsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editLensesBottomSheetFragment"
+            app:destination="@id/editLensesBottomSheetFragment" />
     </fragment>
     <dialog
         android:id="@+id/addNewLensesBottomSheetFragment"
@@ -41,6 +44,10 @@
             android:name="lensDurationArgKey"
             app:argType="sr.app.mylenses.utils.data.enums.Duration"
             android:defaultValue="undefined" />
+        <argument
+            android:name="lensStartDateArgKey"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -66,4 +73,8 @@
         android:id="@+id/chartsFragment"
         android:name="sr.app.mylenses.ui.charts.ChartsFragment"
         android:label="ChartsFragment" />
+    <dialog
+        android:id="@+id/editLensesBottomSheetFragment"
+        android:name="sr.app.mylenses.ui.addnewlenses.EditLensesBottomSheetFragment"
+        android:label="EditLensesBottomSheetFragment" />
 </navigation>

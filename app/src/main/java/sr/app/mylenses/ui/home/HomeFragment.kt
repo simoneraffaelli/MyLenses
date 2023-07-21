@@ -64,6 +64,11 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
                         RepositoryManager.lensesRepository.deactivateActiveLenses()
                     }
                 }
+
+                binding.lensesArea.editButtonClickListener= View.OnClickListener {
+                    Navigation.findNavController(it)
+                        .navigate(HomeFragmentDirections.actionHomeFragmentToEditLensesBottomSheetFragment())
+                }
             } ?: binding.lensesArea.reset()
         }
 
