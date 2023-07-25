@@ -21,7 +21,6 @@ import sr.app.mylenses.utils.lang.StringsManager
 import sr.app.mylenses.utils.lang.curiosities
 import sr.app.mylenses.utils.login.GoogleSSOManager
 import sr.app.mylenses.utils.preferences.SharedPreferencesManager
-import sr.app.mylenses.utils.worker.SyncManager
 import sr.app.mylenses.view.lensesarea.LensesAreaItem
 
 class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::inflate) {

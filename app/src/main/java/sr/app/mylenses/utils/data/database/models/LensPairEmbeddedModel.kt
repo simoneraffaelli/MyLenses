@@ -1,7 +1,6 @@
 package sr.app.mylenses.utils.data.database.models
 
 import androidx.room.Embedded
-import androidx.room.Entity
 import androidx.room.Relation
 import sr.app.mylenses.utils.data.mapper.Mapper
 import sr.app.mylenses.utils.data.model.LensPair

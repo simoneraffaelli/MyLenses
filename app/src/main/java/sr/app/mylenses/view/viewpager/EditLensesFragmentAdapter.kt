@@ -4,11 +4,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import sr.app.mylenses.ui.addnewlenses.LensFragment
-import sr.app.mylenses.utils.data.enums.Duration
 import sr.app.mylenses.utils.data.enums.Type
 import sr.app.mylenses.utils.data.model.LensPair
 import sr.app.mylenses.utils.log.w
-import sr.app.mylenses.utils.preferences.SharedPreferencesManager
 
 class EditLensesFragmentAdapter(fragment: Fragment, private val pair: LensPair) :
     FragmentStateAdapter(fragment) {

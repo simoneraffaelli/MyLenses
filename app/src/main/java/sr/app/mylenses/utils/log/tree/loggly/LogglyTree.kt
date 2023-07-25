@@ -3,7 +3,6 @@ package sr.app.mylenses.utils.log.tree.loggly
 import androidx.annotation.Keep
 import com.github.tony19.loggly.ILogglyClient
 import com.github.tony19.loggly.LogglyClient
-import sr.app.mylenses.utils.log.tree.loggly.LogglyCallback
 import sr.app.mylenses.utils.log.tree.loggly.formatters.IFormatter
 import sr.app.mylenses.utils.log.tree.loggly.formatters.LogglyStringFormatter
 import timber.log.Timber

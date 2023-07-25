@@ -18,10 +18,8 @@ import sr.app.mylenses.utils.lang.StringsManager
 import sr.app.mylenses.utils.notifications.local.NotificationScheduler
 import sr.app.mylenses.utils.preferences.SharedPreferencesManager
 import sr.app.mylenses.view.gone
-import sr.app.mylenses.view.viewpager.AddNewLensesFragmentAdapter
 import sr.app.mylenses.view.viewpager.EditLensesFragmentAdapter
 import sr.app.mylenses.view.visible
-import kotlin.math.max
 
 class EditLensesBottomSheetFragment :
     BaseBottomSheetDialog<AddNewLensesBottomSheetFragmentBinding>(
