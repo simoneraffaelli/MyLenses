@@ -19,8 +19,10 @@ import com.lorenzofelletti.permissions.dispatcher.dsl.doOnDenied
 import com.lorenzofelletti.permissions.dispatcher.dsl.doOnGranted
 import com.lorenzofelletti.permissions.dispatcher.dsl.withRequestCode
 import sr.app.mylenses.databinding.ActivityMainBinding
+import sr.app.mylenses.utils.checkUpdatePeriod
 import sr.app.mylenses.utils.log.d
 import sr.app.mylenses.utils.log.w
+import sr.app.mylenses.utils.worker.SyncManager
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +41,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initPermissions()
         initInAppUpdate()
+        checkResourcesUpdate()
+    }
+
+    private fun checkResourcesUpdate() {
+        SyncManager.lastUpdateCheck
+            ?.takeIf { it.plusDays(checkUpdatePeriod).isBeforeNow }
+            ?.run {
+                SyncManager.createDownloadWorker(applicationContext)
+            } ?: SyncManager.createDownloadWorker(applicationContext)
     }
 
     override fun onResume() {

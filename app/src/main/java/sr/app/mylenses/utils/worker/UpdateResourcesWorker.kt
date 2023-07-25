@@ -29,7 +29,6 @@ class UpdateResourcesWorker(context: Context, parameters: WorkerParameters) :
             checkForUpdates()
             setForeground(createForegroundInfo(StringsManager.get("downloadStarting")))
             download()
-            finishDownloadProcedure()
         }.onFailure {
             w(it)
             releaseWifiLock()
@@ -39,20 +38,19 @@ class UpdateResourcesWorker(context: Context, parameters: WorkerParameters) :
         return Result.success()
     }
 
-    private fun finishDownloadProcedure() {
-        SyncManager.lastUpdateCheck = DateTime.now()
-    }
-
     private suspend fun checkForUpdates() {
         val resources = ApiManager.checkResourcesUpdate.invoke()
         resources.body()?.forEach {
             RepositoryManager.resourcesRepository.updateFromApi(it.map())
         }
+
+        SyncManager.lastUpdateCheck = DateTime.now()
     }
 
     private suspend fun download() {
         val res = RepositoryManager.resourcesRepository.resourcesToDownload
         val max = res.count()
+        val now = DateTime.now()
         res.forEachIndexed { idx, resource ->
             runCatching {
                 val resp = ApiManager.downloadResource.invoke(resource.url)
@@ -69,6 +67,8 @@ class UpdateResourcesWorker(context: Context, parameters: WorkerParameters) :
                         ProgressModel(idx, max)
                     )
                 )
+
+                RepositoryManager.resourcesRepository.updateSyncDate(resource.fileName, now)
             }.onFailure {
                 w(it)
 
