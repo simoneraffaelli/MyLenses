@@ -14,7 +14,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "sr.app.mylenses"
+        applicationId "com.raffinato.contactlensreminder"
         minSdk 28
         targetSdk 33
         versionCode 1

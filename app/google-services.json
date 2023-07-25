@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:589831954688:android:1e2dd8885eb98c5bf793e5",
+        "android_client_info": {
+          "package_name": "com.raffinato.contactlensreminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589831954688-jgckfl46odq2krud2ec1l52o4nbq1p7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMrvVzGdZlWPQX5o_8qcSiGKBZc07poMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589831954688-jgckfl46odq2krud2ec1l52o4nbq1p7t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:589831954688:android:3d011b20e5708ef0f793e5",
         "android_client_info": {
           "package_name": "sr.app.mylenses"
