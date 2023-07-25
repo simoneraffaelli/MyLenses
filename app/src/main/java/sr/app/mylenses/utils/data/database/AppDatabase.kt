@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.google.errorprone.annotations.Keep
 import sr.app.mylenses.utils.data.database.converters.Converters
 import sr.app.mylenses.utils.data.database.dao.LensesDao
 import sr.app.mylenses.utils.data.database.dao.ResourcesDao
@@ -13,6 +14,7 @@ import sr.app.mylenses.utils.data.database.models.LensPairModel
 import sr.app.mylenses.utils.data.database.models.ResourceModel
 import sr.app.mylenses.utils.data.databaseName
 
+@Keep
 @Database(
     entities = [LensModel::class, LensPairModel::class, ResourceModel::class],
     version = 1,

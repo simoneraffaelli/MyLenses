@@ -2,9 +2,11 @@ package sr.app.mylenses.utils.data.database.models
 
 import androidx.room.Embedded
 import androidx.room.Relation
+import com.google.errorprone.annotations.Keep
 import sr.app.mylenses.utils.data.mapper.Mapper
 import sr.app.mylenses.utils.data.model.LensPair
 
+@Keep
 data class LensPairEmbeddedModel(
     @Embedded val pair: LensPairModel,
     @Relation(
