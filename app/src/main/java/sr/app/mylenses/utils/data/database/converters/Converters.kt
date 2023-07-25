@@ -38,12 +38,12 @@ class Converters {
     }
 
     @TypeConverter
-    fun intToResourceType(value: Int): ResourceType {
-        return ResourceType.fromInt(value)
+    fun stringToResourceType(value: String): ResourceType {
+        return ResourceType.decode(value)
     }
 
     @TypeConverter
-    fun resourceTypeToInt(value: ResourceType): Int {
-        return value.ordinal
+    fun resourceTypeToString(value: ResourceType): String {
+        return value.code
     }
 }

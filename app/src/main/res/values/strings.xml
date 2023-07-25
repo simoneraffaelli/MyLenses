@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Lenses</string>
+    <string name="download_worker_service_tag">download_worker_service_tag</string>
 </resources>

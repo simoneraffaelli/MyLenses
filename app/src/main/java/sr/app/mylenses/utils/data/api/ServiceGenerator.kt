@@ -1,5 +1,6 @@
 package sr.app.mylenses.utils.data.api
 
+import com.fatboyindustrial.gsonjodatime.Converters
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,8 +18,13 @@ class ServiceGenerator {
         private val builder: Retrofit.Builder
             get() {
                 return Retrofit.Builder().addConverterFactory(
+
                     GsonConverterFactory.create(
-                        GsonBuilder().serializeNulls().create()
+                        Converters.registerDateTime(
+                            GsonBuilder()
+                                .serializeNulls()
+                                .setDateFormat("yyyy-MM-dd")
+                        ).create()
                     )
                 )
             }

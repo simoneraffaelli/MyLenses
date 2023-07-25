@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "44fa7b5300cf2ff0b507c530004d1416",
+    "identityHash": "f7ef9dac96608d3865bc4d041fa8c64a",
     "entities": [
       {
         "tableName": "lens",
@@ -88,37 +88,43 @@
       },
       {
         "tableName": "resources",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`file_name` TEXT NOT NULL, `type` INTEGER NOT NULL, `sync_date` INTEGER, `run_sync` INTEGER NOT NULL, PRIMARY KEY(`file_name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`filename` TEXT NOT NULL, `url` TEXT NOT NULL, `type` TEXT NOT NULL, `last_updated` INTEGER NOT NULL, `sync_date` INTEGER, PRIMARY KEY(`filename`))",
         "fields": [
           {
             "fieldPath": "fileName",
-            "columnName": "file_name",
+            "columnName": "filename",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "type",
             "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastUpdated",
+            "columnName": "last_updated",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "syncDate",
+            "fieldPath": "lastSynchronized",
             "columnName": "sync_date",
             "affinity": "INTEGER",
             "notNull": false
-          },
-          {
-            "fieldPath": "runSync",
-            "columnName": "run_sync",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
           "autoGenerate": false,
           "columnNames": [
-            "file_name"
+            "filename"
           ]
         },
         "indices": [],
@@ -128,7 +134,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '44fa7b5300cf2ff0b507c530004d1416')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f7ef9dac96608d3865bc4d041fa8c64a')"
     ]
   }
 }

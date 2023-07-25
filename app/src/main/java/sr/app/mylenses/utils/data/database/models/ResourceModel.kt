@@ -11,17 +11,20 @@ import sr.app.mylenses.utils.data.model.Resource
 @Entity(tableName = "resources")
 class ResourceModel(
     @PrimaryKey()
-    @ColumnInfo(name = "file_name")
+    @ColumnInfo(name = "filename")
     val fileName: String,
+    @ColumnInfo(name = "url")
+    val url: String,
     @ColumnInfo(name = "type")
     val type: ResourceType,
+    @ColumnInfo(name = "last_updated")
+    val lastUpdated: DateTime,
     @ColumnInfo(name = "sync_date")
-    val syncDate: DateTime?
+    val lastSynchronized: DateTime?,
 ) : Mapper<Resource> {
-    @ColumnInfo(name = "run_sync")
-    var runSync: Boolean = false
+
 
     override fun map(): Resource {
-        return Resource(fileName, type, syncDate)
+        return Resource(fileName, url, type, lastUpdated, lastSynchronized)
     }
 }

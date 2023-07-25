@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
+import org.joda.time.DateTime
 import sr.app.mylenses.MyLensesApp
 import sr.app.mylenses.utils.data.enums.Duration
 
@@ -47,4 +48,9 @@ object SharedPreferencesManager {
             sharedPreferences.edit().putInt(lastLeftLensDurationKey, value.first.days).apply()
             sharedPreferences.edit().putInt(lastRightLensDurationKey, value.first.days).apply()
         }
+
+    var lastUpdateCheckSP: DateTime?
+        get() = sharedPreferences.getLong(lastUpdateCheckKey, -1).takeIf { it > 0 }
+            ?.let { DateTime().withMillis(it) }
+        set(value) = sharedPreferences.edit().putLong(stocksKey, value?.millis ?: -1).apply()
 }

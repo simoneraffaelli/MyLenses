@@ -11,4 +11,9 @@ object RepositoryManager {
         val db = AppDatabase(ctx)
         LensesRepository(db.lensesDao())
     }
+
+    val resourcesRepository: ResourcesRepository by lazy {
+        val db = AppDatabase(ctx)
+        ResourcesRepository(db.resourcesDao())
+    }
 }

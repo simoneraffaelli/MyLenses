@@ -21,11 +21,18 @@ import sr.app.mylenses.utils.lang.StringsManager
 import sr.app.mylenses.utils.lang.curiosities
 import sr.app.mylenses.utils.login.GoogleSSOManager
 import sr.app.mylenses.utils.preferences.SharedPreferencesManager
+import sr.app.mylenses.utils.worker.SyncManager
 import sr.app.mylenses.view.lensesarea.LensesAreaItem
 
 class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::inflate) {
 
     private val viewModel: MainNavGraphViewModel by navGraphViewModels(R.id.main_nav_graph)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        SyncManager.createDownloadWorker(requireContext())
+    }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

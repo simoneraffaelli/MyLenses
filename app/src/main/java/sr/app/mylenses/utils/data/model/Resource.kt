@@ -9,13 +9,14 @@ import sr.app.mylenses.utils.data.mapper.Mapper
 
 class Resource(
     val fileName: String,
+    val url: String,
     val type: ResourceType,
-    val syncDate: DateTime?,
-    var runSync: Boolean = false
+    val lastUpdated: DateTime,
+    val lastSynchronized: DateTime? =  null
 ) : Mapper<ResourceModel> {
 
     override fun map(): ResourceModel {
-        return ResourceModel(fileName, type, syncDate)
+        return ResourceModel(fileName, url, type, lastUpdated, lastSynchronized)
     }
 
     fun filePath(context: Context): String {

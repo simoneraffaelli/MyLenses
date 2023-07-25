@@ -1,13 +1,14 @@
 package sr.app.mylenses.utils.data.enums
 
 import sr.app.mylenses.utils.data.langAssetPath
+import sr.app.mylenses.utils.data.langTypeCode
 
-enum class ResourceType(val assetPath: String) {
-    Language(langAssetPath), Undefined("");
+enum class ResourceType(val assetPath: String, val code: String) {
+    Language(langAssetPath, langTypeCode), Undefined("", "");
 
     companion object {
-        fun fromInt(value: Int): ResourceType {
-            return values().singleOrNull { it.ordinal == value } ?: Undefined
+        fun decode(value: String): ResourceType {
+            return values().singleOrNull { it.code == value } ?: Undefined
         }
     }
 }

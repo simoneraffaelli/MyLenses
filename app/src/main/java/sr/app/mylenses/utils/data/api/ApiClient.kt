@@ -24,7 +24,7 @@ object ApiClient {
         }.onFailure {
             Toast.makeText(
                 MyLensesApp.instance,
-                StringsManager.get(""),
+                StringsManager.get("AASSDD"),
                 Toast.LENGTH_LONG
             )
                 .show()

@@ -6,6 +6,7 @@ plugins {
     id 'com.google.firebase.crashlytics'
     id 'com.google.firebase.firebase-perf'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'org.jetbrains.kotlin.android'
 }
 apply from: './signing.gradle'
 
@@ -83,8 +84,9 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
     //Gson
     implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.8.0'
     //Encrypted Shared Preferences
-    implementation "androidx.security:security-crypto:1.0.0"
+    implementation 'androidx.security:security-crypto:1.0.0'
     //Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
     //Firebase
@@ -120,6 +122,13 @@ dependencies {
     implementation 'com.airbnb.android:lottie:6.1.0'
     //PermissionManager
     implementation 'com.github.lorenzofelletti:permissions:0.4.2'
+    //InApp Update
+    implementation 'com.google.android.play:app-update:2.1.0'
+    implementation 'com.google.android.play:app-update-ktx:2.1.0'
+    //WorkManager
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+    implementation "androidx.work:work-multiprocess:$work_version"
+
     //Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

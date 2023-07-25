@@ -9,6 +9,7 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import sr.app.mylenses.MainActivity
 import sr.app.mylenses.R
+import sr.app.mylenses.utils.notifications.local.workers.ProgressModel
 
 class NotificationBuilder {
 
@@ -44,8 +45,8 @@ class NotificationBuilder {
         }
 
         private fun createNotificationChannel(context: Context) {
-            val name = "nome"
-            val descriptionText = "desctizione"
+            val name = "Default"
+            val descriptionText = "Default"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(channelId, name, importance).apply {
                 description = descriptionText
@@ -57,6 +58,28 @@ class NotificationBuilder {
             val notificationManager: NotificationManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
+        }
+
+        fun buildWorkerServiceNotification(
+            ctx: Context,
+            text: String,
+            cancelIntent: PendingIntent,
+            progressModel: ProgressModel? = null
+        ): NotificationCompat.Builder {
+            createNotificationChannel(ctx)
+            // Create the notification itself
+            return NotificationCompat.Builder(ctx, channelId)
+                .setContentTitle("Worker Title")
+                .setTicker("Worker Ticker")
+                .setContentText(text)
+                .setSmallIcon(R.drawable.ic_download)
+                .setOnlyAlertOnce(true)
+                .addAction(R.drawable.ic_clear, "cancelIntent: PendingIntent,", cancelIntent)
+                .setProgress(
+                    progressModel?.max?.toInt() ?: 0,
+                    progressModel?.progress?.toInt() ?: 0,
+                    progressModel == null
+                )
         }
     }
 }
