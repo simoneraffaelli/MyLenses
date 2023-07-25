@@ -45,11 +45,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkResourcesUpdate() {
-        SyncManager.lastUpdateCheck
-            ?.takeIf { it.plusDays(checkUpdatePeriod).isBeforeNow }
-            ?.run {
+        SyncManager.lastUpdateCheck?.let {
+            if (it.plusDays(checkUpdatePeriod).isBeforeNow)
                 SyncManager.createDownloadWorker(applicationContext)
-            } ?: SyncManager.createDownloadWorker(applicationContext)
+        } ?: SyncManager.createDownloadWorker(applicationContext)
     }
 
     override fun onResume() {
