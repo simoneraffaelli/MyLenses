@@ -31,15 +31,16 @@ class NotificationBuilder {
 
             createNotificationChannel(context)
             return NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.drawable.circle_point)
-                .setContentTitle("My notification")
-                .setContentText("Hello World!")
+                .setSmallIcon(R.drawable.ic_logo_notification)
+                .setContentTitle(context.resources.getString(R.string.notification_title))
+                .setContentText(context.resources.getString(R.string.notification_body))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .addAction(
-                    R.drawable.ic_logout, "AsDsD",
-                    snoozePendingIntent
+                    /* icon = */ R.drawable.ic_silent,
+                    /* title = */ context.resources.getString(R.string.notification_silence_label),
+                    /* intent = */ snoozePendingIntent
                 )
                 .build()
         }
@@ -69,12 +70,11 @@ class NotificationBuilder {
             createNotificationChannel(ctx)
             // Create the notification itself
             return NotificationCompat.Builder(ctx, channelId)
-                .setContentTitle("Worker Title")
-                .setTicker("Worker Ticker")
+                .setContentTitle("Download Service")
                 .setContentText(text)
                 .setSmallIcon(R.drawable.ic_download)
                 .setOnlyAlertOnce(true)
-                .addAction(R.drawable.ic_clear, "cancelIntent: PendingIntent,", cancelIntent)
+                .addAction(R.drawable.ic_clear, ctx.resources.getString(R.string.notification_cancel_label), cancelIntent)
                 .setProgress(
                     progressModel?.max?.toInt() ?: 0,
                     progressModel?.progress?.toInt() ?: 0,

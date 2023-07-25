@@ -21,7 +21,7 @@ class SyncManager {
         fun createDownloadWorker(ctx: Context) {
             val tag = ctx.resources.getString(R.string.download_worker_service_tag)
             val oneTimeRequest: OneTimeWorkRequest =
-                OneTimeWorkRequestBuilder<CheckUpdateWorker>()
+                OneTimeWorkRequestBuilder<UpdateResourcesWorker>()
                     .addTag(tag)
                     .build()
 

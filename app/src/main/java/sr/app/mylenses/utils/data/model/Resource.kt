@@ -20,6 +20,6 @@ class Resource(
     }
 
     fun filePath(context: Context): String {
-        return documentFullPath(context, type.assetPath, fileName)
+        return documentFullPath(context, type.assetPath)
     }
 }

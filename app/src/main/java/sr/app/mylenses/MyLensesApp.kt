@@ -3,6 +3,9 @@ package sr.app.mylenses
 import android.app.Application
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import sr.app.mylenses.utils.lang.StringsManager
+import sr.app.mylenses.utils.log.tree.loggly.LogglyTree
+import sr.app.mylenses.utils.log.tree.loggly.formatters.json.LogglyJsonFormatter
+import sr.app.mylenses.utils.logglyToken
 import sr.app.mylenses.utils.notifications.push.PushNotificationsHelper
 import timber.log.Timber
 
@@ -27,8 +30,10 @@ class MyLensesApp : Application() {
         //Init log
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+            Timber.plant(LogglyTree(logglyToken, LogglyJsonFormatter()))
         } else {
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
+            Timber.plant(LogglyTree(logglyToken, LogglyJsonFormatter()))
         }
     }
 }

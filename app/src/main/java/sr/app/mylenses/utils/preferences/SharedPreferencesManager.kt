@@ -52,5 +52,5 @@ object SharedPreferencesManager {
     var lastUpdateCheckSP: DateTime?
         get() = sharedPreferences.getLong(lastUpdateCheckKey, -1).takeIf { it > 0 }
             ?.let { DateTime().withMillis(it) }
-        set(value) = sharedPreferences.edit().putLong(stocksKey, value?.millis ?: -1).apply()
+        set(value) = sharedPreferences.edit().putLong(lastUpdateCheckKey, value?.millis ?: -1).apply()
 }

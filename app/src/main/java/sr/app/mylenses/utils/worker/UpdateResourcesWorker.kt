@@ -9,22 +9,25 @@ import androidx.work.WorkerParameters
 import org.joda.time.DateTime
 import sr.app.mylenses.utils.data.api.ApiManager
 import sr.app.mylenses.utils.data.repository.RepositoryManager
+import sr.app.mylenses.utils.data.saveByteStreamToInternalStorage
+import sr.app.mylenses.utils.lang.StringsManager
 import sr.app.mylenses.utils.log.w
 import sr.app.mylenses.utils.notifications.local.NotificationBuilder
 import sr.app.mylenses.utils.notifications.local.downloadWorkerNotificationId
 import sr.app.mylenses.utils.notifications.local.workers.ProgressModel
 
-class CheckUpdateWorker(context: Context, parameters: WorkerParameters) :
+class UpdateResourcesWorker(context: Context, parameters: WorkerParameters) :
     CoroutineWorker(context, parameters) {
     private val tag by lazy { this::class.java.simpleName }
 
     private lateinit var wifiLock: WifiManager.WifiLock
 
     override suspend fun doWork(): Result {
-        val progress = "asd"
-        setForeground(createForegroundInfo(progress))
+        setForeground(createForegroundInfo(StringsManager.get("checkingUpdates")))
         acquireWifiLock()
         runCatching {
+            checkForUpdates()
+            setForeground(createForegroundInfo(StringsManager.get("downloadStarting")))
             download()
             finishDownloadProcedure()
         }.onFailure {
@@ -40,10 +43,42 @@ class CheckUpdateWorker(context: Context, parameters: WorkerParameters) :
         SyncManager.lastUpdateCheck = DateTime.now()
     }
 
-    private suspend fun download() {
+    private suspend fun checkForUpdates() {
         val resources = ApiManager.checkResourcesUpdate.invoke()
         resources.body()?.forEach {
             RepositoryManager.resourcesRepository.updateFromApi(it.map())
+        }
+    }
+
+    private suspend fun download() {
+        val res = RepositoryManager.resourcesRepository.resourcesToDownload
+        val max = res.count()
+        res.forEachIndexed { idx, resource ->
+            runCatching {
+                val resp = ApiManager.downloadResource.invoke(resource.url)
+                saveByteStreamToInternalStorage(
+                    context = applicationContext,
+                    byteStream = resp.body().toString().toByteArray().inputStream(),
+                    fileName = resource.fileName,
+                    fullPath = resource.filePath(applicationContext)
+                )
+
+                setForeground(
+                    createForegroundInfo(
+                        StringsManager.get("downloadProgress", "$idx", "$max"),
+                        ProgressModel(idx, max)
+                    )
+                )
+            }.onFailure {
+                w(it)
+
+                setForeground(
+                    createForegroundInfo(
+                        StringsManager.get("downloadProgress", "$idx", "$max"),
+                        ProgressModel(idx, max)
+                    )
+                )
+            }
         }
     }
 
@@ -80,15 +115,5 @@ class CheckUpdateWorker(context: Context, parameters: WorkerParameters) :
         } else {
             w("Unable to release wifi lock.", tag)
         }
-    }
-
-    companion object {
-        //Input Tags
-        const val syncMethod = "syncMethod"
-
-        //Output tags
-        const val progressDescTag = "progressDesc"
-        const val progressPercTag = "progressPerc"
-        const val progressCurrentToTotTag = "progressCurrToTot"
     }
 }

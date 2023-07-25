@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">My Lenses</string>
     <string name="download_worker_service_tag">download_worker_service_tag</string>
+    <!--   NotificationActions   -->
+    <string name="notification_title">Lenses have expired!</string>
+    <string name="notification_body">Open app to check it out.</string>
+    <string name="notification_silence_label">Silence</string>
+    <string name="notification_cancel_label">Cancel</string>
 </resources>

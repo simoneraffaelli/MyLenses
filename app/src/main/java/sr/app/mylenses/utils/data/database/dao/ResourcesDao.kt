@@ -8,7 +8,10 @@ import sr.app.mylenses.utils.data.database.models.ResourceModel
 
 @Dao
 interface ResourcesDao {
-    @Query("SELECT * FROM resources WHERE filename > :filename")
+    @Query("SELECT * FROM resources WHERE sync_date IS NULL OR sync_date < last_updated")
+    fun getResourcesToDownload(): List<ResourceModel>
+
+    @Query("SELECT * FROM resources WHERE filename = :filename")
     fun getResource(filename: String): ResourceModel
 
     @Upsert(ResourceModel::class)

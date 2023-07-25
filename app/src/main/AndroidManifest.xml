@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLenses.Splash"
+        android:usesCleartextTraffic="true"
         tools:targetApi="s">
         <activity
             android:name=".MainActivity"

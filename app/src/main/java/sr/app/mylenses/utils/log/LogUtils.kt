@@ -25,3 +25,15 @@ fun w(throwable: Throwable, logTag: String = defaultTag) {
 fun e(logThrowable: Throwable, logTag: String = defaultTag) {
     Log.logThrowable(logThrowable, logTag)
 }
+
+fun getLogTagByPriority(priority: Int): String {
+    return when (priority) {
+        2 -> "VERBOSE"
+        3 -> "DEBUG"
+        4 -> "INFO"
+        5 -> "WARN"
+        6 -> "ERROR"
+        7 -> "ASSERT"
+        else -> "WTF"
+    }
+}
