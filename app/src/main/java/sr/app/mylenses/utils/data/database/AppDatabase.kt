@@ -17,7 +17,7 @@ import sr.app.mylenses.utils.data.databaseName
 @Keep
 @Database(
     entities = [LensModel::class, LensPairModel::class, ResourceModel::class],
-    version = 1,
+    version = 100,
     exportSchema = true,
     autoMigrations = []
 )
