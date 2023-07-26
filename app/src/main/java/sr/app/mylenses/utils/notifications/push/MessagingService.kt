@@ -9,8 +9,10 @@ class MessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         d("Remote message data payload: ${remoteMessage.data}")
-        if (remoteMessage.data.isNotEmpty()) {
-            SyncManager.createDownloadWorker(applicationContext)
+        remoteMessage.data.takeIf { it.isNotEmpty() }?.let { data ->
+            when {
+                data[payloadTaskKey] == payloadUpdateResourcesVal -> SyncManager.createDownloadWorker(applicationContext)
+            }
         }
     }
 

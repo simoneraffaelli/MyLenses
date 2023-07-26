@@ -159,3 +159,5 @@
 -dontwarn rx.Subscriber
 -dontwarn rx.Subscription
 -dontwarn rx.subscriptions.Subscriptions
+-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
