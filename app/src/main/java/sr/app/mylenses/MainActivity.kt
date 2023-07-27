@@ -24,7 +24,6 @@ import sr.app.mylenses.utils.log.d
 import sr.app.mylenses.utils.log.w
 import sr.app.mylenses.utils.worker.SyncManager
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
@@ -76,7 +75,6 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         pm.dispatchOnRequestPermissionsResult(requestCode, grantResults)
-        pm checkRequestAndDispatch 1
     }
 
     private fun initInAppUpdate() {
@@ -124,7 +122,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun initPermissions() {
         pm.buildRequestResultsDispatcher {

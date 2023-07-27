@@ -30,10 +30,9 @@ class MyLensesApp : Application() {
         //Init log
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
-            Timber.plant(LogglyTree(logglyToken, LogglyJsonFormatter()))
         } else {
-            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
             Timber.plant(LogglyTree(logglyToken, LogglyJsonFormatter()))
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
         }
     }
 }
