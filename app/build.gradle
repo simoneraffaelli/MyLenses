@@ -97,10 +97,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-messaging-ktx'
     implementation 'com.google.firebase:firebase-perf-ktx'
-    //Drive API
-    implementation 'com.google.http-client:google-http-client-gson:1.40.1'
-    implementation 'com.google.api-client:google-api-client-android:2.0.1'
-    implementation 'com.google.apis:google-api-services-drive:v3-rev197-1.25.0'
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
@@ -111,28 +107,22 @@ dependencies {
     implementation 'com.gelitenight.waveview:waveview:1.0.0'
     //WilliamChart
     implementation 'com.diogobernardino:williamchart:3.11.0'
-    implementation 'com.diogobernardino.williamchart:tooltip-slider:3.11.0'
-    implementation 'com.diogobernardino.williamchart:tooltip-points:3.11.0'
     //DatePickerTimeline
     implementation 'com.github.simoneraffaelli:datepicker-timeline:1.0.0'
     //TopSheet
     implementation 'com.github.Raffaa:AndroidTopSheet:0.52'
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.14.2'
-    ksp 'com.github.bumptech.glide:ksp:4.14.2'
     //Lottie
     implementation 'com.airbnb.android:lottie:6.1.0'
     //PermissionManager
     implementation 'com.github.lorenzofelletti:permissions:0.4.2'
     //InApp Update
     implementation 'com.google.android.play:app-update:2.1.0'
-    implementation 'com.google.android.play:app-update-ktx:2.1.0'
     //WorkManager
     implementation "androidx.work:work-runtime-ktx:$work_version"
-    implementation "androidx.work:work-multiprocess:$work_version"
+    runtimeOnly "androidx.work:work-multiprocess:$work_version"
 
     //Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
 }
