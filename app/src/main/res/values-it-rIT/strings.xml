@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Le Mie Lenti</string>
+    <string name="notification_title">Le Lenti sono scadute!</string>
+    <string name="notification_body">Apri l\'app per controllare.</string>
+    <string name="notification_silence_label">Silenzia</string>
+    <string name="notification_cancel_label">Annulla</string>
+</resources>
