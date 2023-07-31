@@ -22,7 +22,7 @@ class StocksBottomSheetFragment :
         }
 
         binding.save.setOnClickListener {
-            SharedPreferencesManager.stocksSP = binding.stocks.text.toString().toInt()
+            SharedPreferencesManager.stocksSP = binding.stocks.text.toString().toIntOrNull() ?: 0
             dismiss()
         }
     }
