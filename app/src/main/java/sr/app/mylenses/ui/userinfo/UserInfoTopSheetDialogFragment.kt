@@ -3,10 +3,10 @@ package sr.app.mylenses.ui.userinfo
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.Navigation.findNavController
 import sr.app.mylenses.BaseDialogFragment
-import sr.app.mylenses.R
 import sr.app.mylenses.databinding.UserInfoTopSheetFragmentBinding
+import sr.app.mylenses.utils.navigation.safeNavController
+import sr.app.mylenses.utils.navigation.safeNavigate
 import sr.app.mylenses.view.userinfo.UserInfoTopSheetDialog
 
 class UserInfoTopSheetDialogFragment :
@@ -20,7 +20,7 @@ class UserInfoTopSheetDialogFragment :
         super.onViewCreated(view, savedInstanceState)
 
         binding.settingsIcon.setOnClickListener {
-            findNavController(requireActivity(), R.id.main_activity_nav_host_fragment).navigate(
+            safeNavController?.safeNavigate(
                 UserInfoTopSheetDialogFragmentDirections.actionUserInfoTopSheetDialogFragmentToSettingsFragment()
             )
         }

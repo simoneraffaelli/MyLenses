@@ -5,9 +5,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigator
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,6 +16,8 @@ import sr.app.mylenses.ui.MainNavGraphViewModel
 import sr.app.mylenses.utils.data.repository.RepositoryManager
 import sr.app.mylenses.utils.lang.StringsManager
 import sr.app.mylenses.utils.lang.curiosities
+import sr.app.mylenses.utils.navigation.safeNavController
+import sr.app.mylenses.utils.navigation.safeNavigate
 import sr.app.mylenses.utils.preferences.SharedPreferencesManager
 import sr.app.mylenses.view.lensesarea.LensesAreaItem
 
@@ -34,20 +34,21 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
         binding.carouselTextView.textList = curiosities
 
         binding.addNewLensesButton.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(HomeFragmentDirections.actionHomeFragmentToAddNewLensesBottomSheetFragment())
+            safeNavController?.safeNavigate(HomeFragmentDirections.actionHomeFragmentToAddNewLensesBottomSheetFragment())
         }
 
         binding.shop.setOnClickListener {
             val extras: FragmentNavigator.Extras =
                 FragmentNavigator.Extras.Builder().addSharedElement(it, "sharedElem_comingSoon")
                     .build()
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToComingSoonFragment(), extras)
+            safeNavController?.safeNavigate(
+                HomeFragmentDirections.actionHomeFragmentToComingSoonFragment(),
+                extras
+            )
         }
 
         binding.userIcon.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(HomeFragmentDirections.actionHomeFragmentToUserInfoTopSheetDialogFragment())
+            safeNavController?.safeNavigate(HomeFragmentDirections.actionHomeFragmentToUserInfoTopSheetDialogFragment())
         }
 
         viewModel.activeLenses.observe(viewLifecycleOwner) { pair ->
@@ -63,22 +64,24 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
                     }
                 }
 
-                binding.lensesArea.editButtonClickListener= View.OnClickListener {
-                    Navigation.findNavController(it)
-                        .navigate(HomeFragmentDirections.actionHomeFragmentToEditLensesBottomSheetFragment())
+                binding.lensesArea.editButtonClickListener = View.OnClickListener {
+                    safeNavController?.safeNavigate(HomeFragmentDirections.actionHomeFragmentToEditLensesBottomSheetFragment())
                 }
             } ?: binding.lensesArea.reset()
         }
 
         binding.stocks.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStocksBottomSheetFragment())
+            safeNavController?.safeNavigate(HomeFragmentDirections.actionHomeFragmentToStocksBottomSheetFragment())
         }
 
         binding.history.setOnClickListener {
             val extras: FragmentNavigator.Extras =
                 FragmentNavigator.Extras.Builder().addSharedElement(it, "sharedElem_history")
                     .build()
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChartsFragment(), extras)
+            safeNavController?.safeNavigate(
+                HomeFragmentDirections.actionHomeFragmentToChartsFragment(),
+                extras
+            )
         }
 
         SharedPreferencesManager.stocksSPLiveData.observe(viewLifecycleOwner) {
