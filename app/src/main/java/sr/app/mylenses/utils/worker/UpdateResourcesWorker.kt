@@ -2,6 +2,7 @@ package sr.app.mylenses.utils.worker
 
 import android.content.Context
 import android.net.wifi.WifiManager
+import android.os.Build
 import androidx.work.CoroutineWorker
 import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
@@ -23,19 +24,26 @@ class UpdateResourcesWorker(context: Context, parameters: WorkerParameters) :
     private lateinit var wifiLock: WifiManager.WifiLock
 
     override suspend fun doWork(): Result {
-        setForeground(createForegroundInfo(StringsManager.get("checkingUpdates")))
-        acquireWifiLock()
         runCatching {
+            displayServiceNotification(createForegroundInfo(StringsManager.get("checkingUpdates")))
+            acquireWifiLock()
             checkForUpdates()
-            setForeground(createForegroundInfo(StringsManager.get("downloadStarting")))
+            displayServiceNotification(createForegroundInfo(StringsManager.get("downloadStarting")))
             download()
         }.onFailure {
             w(it)
             releaseWifiLock()
             return Result.failure()
         }
+        
         releaseWifiLock()
         return Result.success()
+    }
+
+    private suspend fun displayServiceNotification(foregroundInfo: ForegroundInfo) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+            setForeground(foregroundInfo)
+        }
     }
 
     private suspend fun checkForUpdates() {
@@ -61,7 +69,7 @@ class UpdateResourcesWorker(context: Context, parameters: WorkerParameters) :
                     fullPath = resource.filePath(applicationContext)
                 )
 
-                setForeground(
+                displayServiceNotification(
                     createForegroundInfo(
                         StringsManager.get("downloadProgress", "$idx", "$max"),
                         ProgressModel(idx, max)
@@ -72,7 +80,7 @@ class UpdateResourcesWorker(context: Context, parameters: WorkerParameters) :
             }.onFailure {
                 w(it)
 
-                setForeground(
+                displayServiceNotification(
                     createForegroundInfo(
                         StringsManager.get("downloadProgress", "$idx", "$max"),
                         ProgressModel(idx, max)

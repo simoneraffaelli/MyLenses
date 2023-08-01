@@ -1,9 +1,11 @@
 package sr.app.mylenses.utils.worker
 
 import android.content.Context
+import android.os.Build
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.OutOfQuotaPolicy
 import androidx.work.WorkManager
 import org.joda.time.DateTime
 import sr.app.mylenses.R
@@ -23,6 +25,11 @@ class SyncManager {
             val oneTimeRequest: OneTimeWorkRequest =
                 OneTimeWorkRequestBuilder<UpdateResourcesWorker>()
                     .addTag(tag)
+                    .apply {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                            this.setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+                        }
+                    }
                     .build()
 
             WorkManager.getInstance(ctx).enqueueUniqueWork(
