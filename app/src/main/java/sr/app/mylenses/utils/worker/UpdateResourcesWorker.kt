@@ -35,7 +35,7 @@ class UpdateResourcesWorker(context: Context, parameters: WorkerParameters) :
             releaseWifiLock()
             return Result.failure()
         }
-        
+
         releaseWifiLock()
         return Result.success()
     }

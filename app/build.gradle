@@ -17,7 +17,7 @@ android {
         applicationId "com.raffinato.contactlensreminder"
         minSdk 28
         targetSdk 33
-        versionCode 104
+        versionCode 105
         versionName "1.0.0"
 
         ksp {
