@@ -18,7 +18,7 @@ abstract class LensesDao {
     @Query("SELECT * FROM lens_pair WHERE is_active = 1")
     abstract fun getActiveLensPair(): LensPairEmbeddedModel?
 
-    @Query("SELECT * FROM lens WHERE init_date > :dateMillis ORDER BY init_date")
+    @Query("SELECT * FROM lens WHERE init_date > (:dateMillis - (duration * 86400000)) ORDER BY init_date")
     abstract fun getLastMonthLenses(dateMillis: Long): LiveData<List<LensModel>>
 
     @Query("UPDATE lens_pair SET is_active = 0 WHERE is_active = 1")

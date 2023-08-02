@@ -17,9 +17,9 @@ class LensesRepository(private val dao: LensesDao) {
         dao.getActiveLensPairLiveData().map { it?.map() }
     }
 
-    fun getLensesHistory(lastMonth: Boolean = true): LiveData<List<Lens>> {
+    fun getLensesHistory(lastPeriod: Boolean = true): LiveData<List<Lens>> {
         val now = DateTime.now()
-        val dateFilter = if (lastMonth) DateTime(now.year, now.monthOfYear, 1, 0, 0).millis else 0
+        val dateFilter = if (lastPeriod) now.minusDays(90).millis else 0
         return dao.getLastMonthLenses(dateFilter).map { it.map { it.map() } }
     }
 

@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:langKey="inLastMonth" />
+                app:langKey="lately" />
 
             <sr.app.mylenses.view.MaterialTextView
                 android:id="@+id/lineChartDescription"

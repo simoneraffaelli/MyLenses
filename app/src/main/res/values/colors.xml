@@ -13,4 +13,7 @@
     <color name="lensesUsedWithinDeadline">#5364e0</color>
     <color name="lensesUsedOutOfDeadline">#505364e0</color>
     <color name="danger">#f44336</color>
+
+    <color name="mti_bg_lbl_date_selected_color">@color/secondaryColor</color>
+    <color name="mti_ring_lbl_date_color">@color/secondaryLightColor</color>
 </resources>

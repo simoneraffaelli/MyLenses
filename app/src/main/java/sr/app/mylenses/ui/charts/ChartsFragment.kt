@@ -50,6 +50,8 @@ class ChartsFragment : BaseFragment<ChartsFragmentBinding>(ChartsFragmentBinding
                 val groupedLenses = model.groupBy { it.duration }
 
                 val barSet = listOf(
+                    StringsManager.get("weekly") to (groupedLenses[Duration.weekly]?.count()
+                        ?.toFloat() ?: 0f),
                     StringsManager.get("biweekly") to (groupedLenses[Duration.biWeekly]?.count()
                         ?.toFloat() ?: 0f),
                     StringsManager.get("monthly") to (groupedLenses[Duration.monthly]?.count()

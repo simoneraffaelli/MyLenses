@@ -9,6 +9,7 @@ import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.navGraphViewModels
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import sr.app.mylenses.BaseFragment
 import sr.app.mylenses.R
 import sr.app.mylenses.databinding.HomeFragmentBinding
@@ -18,6 +19,7 @@ import sr.app.mylenses.utils.lang.StringsManager
 import sr.app.mylenses.utils.lang.curiosities
 import sr.app.mylenses.utils.navigation.safeNavController
 import sr.app.mylenses.utils.navigation.safeNavigate
+import sr.app.mylenses.utils.notifications.local.NotificationScheduler
 import sr.app.mylenses.utils.preferences.SharedPreferencesManager
 import sr.app.mylenses.view.lensesarea.LensesAreaItem
 
@@ -61,6 +63,9 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
                 binding.lensesArea.deleteButtonClickListener = View.OnClickListener {
                     lifecycleScope.launch(Dispatchers.Default) {
                         RepositoryManager.lensesRepository.deactivateActiveLenses()
+                        withContext(Dispatchers.Main) {
+                            NotificationScheduler.clearNotifications(requireContext())
+                        }
                     }
                 }
 

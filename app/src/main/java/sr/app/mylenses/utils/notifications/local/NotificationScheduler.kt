@@ -8,9 +8,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import org.joda.time.DateTime
-import sr.app.mylenses.utils.data.model.LensPair
 import sr.app.mylenses.utils.data.enums.Type
-import java.util.*
+import sr.app.mylenses.utils.data.model.LensPair
+import java.util.Calendar
 
 class NotificationScheduler {
     companion object {
@@ -75,7 +75,7 @@ class NotificationScheduler {
             )
         }
 
-        private fun clearNotifications(
+        public fun clearNotifications(
             context: Context,
             receiverClass: Class<*> = NotificationsBroadcastReceiver::class.java
         ) {
