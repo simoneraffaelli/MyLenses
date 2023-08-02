@@ -50,22 +50,22 @@ class ChartsFragment : BaseFragment<ChartsFragmentBinding>(ChartsFragmentBinding
                 val groupedLenses = model.groupBy { it.duration }
 
                 val barSet = listOf(
-                    StringsManager.get("weekly") to (groupedLenses[Duration.weekly]?.count()
+                    getBarChartDescription("weekly") to (groupedLenses[Duration.weekly]?.count()
                         ?.toFloat() ?: 0f),
-                    StringsManager.get("biweekly") to (groupedLenses[Duration.biWeekly]?.count()
+                    getBarChartDescription("biweekly") to (groupedLenses[Duration.biWeekly]?.count()
                         ?.toFloat() ?: 0f),
-                    StringsManager.get("monthly") to (groupedLenses[Duration.monthly]?.count()
+                    getBarChartDescription("monthly") to (groupedLenses[Duration.monthly]?.count()
                         ?.toFloat() ?: 0f),
-                    StringsManager.get("bimonthly") to (groupedLenses[Duration.biMonthly]?.count()
+                    getBarChartDescription("bimonthly") to (groupedLenses[Duration.biMonthly]?.count()
                         ?.toFloat()
                         ?: 0f),
-                    StringsManager.get("quarterly") to (groupedLenses[Duration.quarterly]?.count()
+                    getBarChartDescription("quarterly") to (groupedLenses[Duration.quarterly]?.count()
                         ?.toFloat()
                         ?: 0f),
-                    StringsManager.get("semiannual") to (groupedLenses[Duration.semiAnnual]?.count()
+                    getBarChartDescription("semiannual") to (groupedLenses[Duration.semiAnnual]?.count()
                         ?.toFloat()
                         ?: 0f),
-                    StringsManager.get("annual") to (groupedLenses[Duration.annual]?.count()
+                    getBarChartDescription("annual") to (groupedLenses[Duration.annual]?.count()
                         ?.toFloat()
                         ?: 0f)
                 )
@@ -132,6 +132,11 @@ class ChartsFragment : BaseFragment<ChartsFragmentBinding>(ChartsFragmentBinding
                 .append(originalStr[1])
         }
         animator.start()
+    }
+
+    private fun getBarChartDescription(key: String): String {
+        val str = StringsManager.get(key)
+        return str.takeIf { it.length > 10 }?.let { "${it.take(8)}…" } ?: str
     }
 
     companion object {
