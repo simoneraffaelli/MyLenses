@@ -11,7 +11,7 @@ plugins {
 apply from: './signing.gradle'
 
 android {
-    compileSdk 33
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.raffinato.contactlensreminder"
@@ -63,13 +63,13 @@ android {
 
 dependencies {
     //AndroidX
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.core:core-ktx:1.15.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'androidx.core:core-splashscreen:1.0.1'
     //Misc
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'com.google.android.gms:play-services-auth:20.6.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -83,7 +83,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     ksp("androidx.room:room-compiler:$room_version")
     //Gson
-    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.8.0'
     //Encrypted Shared Preferences
     implementation 'androidx.security:security-crypto:1.0.0'
@@ -92,7 +92,7 @@ dependencies {
     //Loggly
     implementation 'com.github.tony19:loggly-client:1.0.3'
     //Firebase
-    implementation platform('com.google.firebase:firebase-bom:32.2.0')
+    implementation platform('com.google.firebase:firebase-bom:33.12.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-messaging-ktx'
@@ -104,7 +104,8 @@ dependencies {
     //JodaTime
     implementation 'joda-time:joda-time:2.12.1'
     //WaveView
-    implementation 'com.gelitenight.waveview:waveview:1.0.0'
+    //implementation 'com.gelitenight.waveview:waveview:1.0.0'
+    implementation 'com.github.gelitenight:WaveView:master'
     //WilliamChart
     implementation 'com.diogobernardino:williamchart:3.11.0'
     //DatePickerTimeline
@@ -123,6 +124,6 @@ dependencies {
 
     //Test
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
 
 }
