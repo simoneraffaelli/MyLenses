@@ -15,7 +15,7 @@ To report an issue send me an email or open a new issue in the "Issues" section 
   
 # Other Infos
 Here is the "official" website I made for the app that needs to be updated:
-* http://lenses.simoneraffaelli.it
+* https://mylenses.app
 
 If you want offer me a coffee: http://paypal.me/SimoneRaffaelli *wink*
 
