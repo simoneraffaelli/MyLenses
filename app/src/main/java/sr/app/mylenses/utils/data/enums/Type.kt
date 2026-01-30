@@ -8,7 +8,7 @@ enum class Type {
 
     companion object {
         fun fromInt(value: Int): Type {
-            return values().singleOrNull { it.ordinal == value } ?: Undefined
+            return entries.singleOrNull { it.ordinal == value } ?: Undefined
         }
     }
 }

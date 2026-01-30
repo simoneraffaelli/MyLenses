@@ -5,7 +5,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
 
-private val documentBasePath = "resources/"
+private const val documentBasePath = "resources/"
 
 fun documentFullPath(context: Context, assetPath: String) =
     "${context.filesDir}${File.separator}$documentBasePath$assetPath"

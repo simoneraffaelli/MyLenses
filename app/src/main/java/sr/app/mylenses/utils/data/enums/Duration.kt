@@ -12,12 +12,12 @@ enum class Duration(val days: Int) {
 
     companion object {
         fun fromInt(value: Int): Duration {
-            return values().singleOrNull { it.days == value } ?: undefined
+            return entries.singleOrNull { it.days == value } ?: undefined
         }
 
         fun fromIndex(index: Int): Duration {
             runCatching {
-                return values()[index]
+                return entries[index]
             }.onFailure {
                 return undefined
             }
@@ -28,7 +28,7 @@ enum class Duration(val days: Int) {
         val labels: Array<String>
             get() {
                 val list = arrayListOf<String>()
-                values().forEach {
+                entries.forEach {
                     if (it != undefined) {
                         list.add(StringsManager.get(it.name.lowercase()))
                     }

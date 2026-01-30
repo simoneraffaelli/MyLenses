@@ -12,7 +12,7 @@ import sr.app.mylenses.utils.data.model.Resource
 @Keep
 @Entity(tableName = "resources")
 class ResourceModel(
-    @PrimaryKey()
+    @PrimaryKey
     @ColumnInfo(name = "filename")
     val fileName: String,
     @ColumnInfo(name = "url")

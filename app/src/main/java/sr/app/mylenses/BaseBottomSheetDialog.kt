@@ -18,6 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import sr.app.mylenses.databinding.BaseBottomSheetLayoutBinding
 import sr.app.mylenses.utils.Inflate
+import androidx.core.graphics.drawable.toDrawable
 
 abstract class BaseBottomSheetDialog<VB : ViewBinding>(
     private val inflate: Inflate<VB>,
@@ -39,7 +40,7 @@ abstract class BaseBottomSheetDialog<VB : ViewBinding>(
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.setOnShowListener {
             (it as? BottomSheetDialog)?.findViewById<View>(R.id.design_bottom_sheet)?.background =
-                ColorDrawable(Color.TRANSPARENT)
+                Color.TRANSPARENT.toDrawable()
         }
         return dialog
     }
