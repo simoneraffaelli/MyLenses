@@ -8,7 +8,7 @@ enum class ResourceType(val assetPath: String, val code: String) {
 
     companion object {
         fun decode(value: String): ResourceType {
-            return values().singleOrNull { it.code == value } ?: Undefined
+            return entries.singleOrNull { it.code == value } ?: Undefined
         }
     }
 }

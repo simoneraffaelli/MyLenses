@@ -75,11 +75,11 @@ class NotificationScheduler {
             )
         }
 
-        public fun clearNotifications(
+        fun clearNotifications(
             context: Context,
             receiverClass: Class<*> = NotificationsBroadcastReceiver::class.java
         ) {
-            Type.values().forEach {
+            Type.entries.forEach {
                 cancelNotification(context, getNotificationId(it), receiverClass)
             }
         }

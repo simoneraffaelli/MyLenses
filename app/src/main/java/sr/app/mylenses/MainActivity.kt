@@ -1,5 +1,6 @@
 package sr.app.mylenses
 
+import android.Manifest
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
@@ -13,14 +14,9 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.lorenzofelletti.permissions.PermissionManager
-import com.lorenzofelletti.permissions.dispatcher.dsl.checkPermissions
-import com.lorenzofelletti.permissions.dispatcher.dsl.doOnDenied
-import com.lorenzofelletti.permissions.dispatcher.dsl.doOnGranted
-import com.lorenzofelletti.permissions.dispatcher.dsl.withRequestCode
+import com.permissionx.guolindev.PermissionX
 import sr.app.mylenses.databinding.ActivityMainBinding
 import sr.app.mylenses.utils.checkUpdatePeriod
-import sr.app.mylenses.utils.log.d
 import sr.app.mylenses.utils.log.w
 import sr.app.mylenses.utils.worker.SyncManager
 
@@ -31,7 +27,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var installStateUpdatedListener: InstallStateUpdatedListener
     private lateinit var activityResultLauncher: ActivityResultLauncher<IntentSenderRequest>
 
-    private val pm = PermissionManager(this)
+    private val permissions = arrayOf(Manifest.permission.POST_NOTIFICATIONS)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -66,15 +63,6 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
             }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        pm.dispatchOnRequestPermissionsResult(requestCode, grantResults)
     }
 
     private fun initInAppUpdate() {
@@ -124,18 +112,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initPermissions() {
-        pm.buildRequestResultsDispatcher {
-            withRequestCode(1) {
-                checkPermissions(android.Manifest.permission.POST_NOTIFICATIONS)
-                doOnGranted {
-                    d("Post notification permission granted")
-                }
-                doOnDenied {
-                    d("Post notification permission denied")
-                }
-            }
-        }
-
-        pm checkRequestAndDispatch 1
+        PermissionX
+            .init(this)
+            .permissions(permissions.toList())
+            .request { allGranted, grantedList, deniedList -> }
     }
 }

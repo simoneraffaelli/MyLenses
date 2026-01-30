@@ -32,7 +32,7 @@ class MyLensesApp : Application() {
             Timber.plant(Timber.DebugTree())
         } else {
             Timber.plant(LogglyTree(logglyToken, LogglyJsonFormatter()))
-            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
+            FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = true
         }
     }
 }

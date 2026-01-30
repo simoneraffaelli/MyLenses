@@ -52,6 +52,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig = true
     }
     packagingOptions {
         resources {
@@ -115,7 +116,7 @@ dependencies {
     //Lottie
     implementation 'com.airbnb.android:lottie:6.7.1'
     //PermissionManager
-    implementation 'com.github.lorenzofelletti:permissions:0.4.2'
+    implementation 'com.guolindev.permissionx:permissionx:1.8.1'
     //InApp Update
     implementation 'com.google.android.play:app-update:2.1.0'
     //WorkManager
